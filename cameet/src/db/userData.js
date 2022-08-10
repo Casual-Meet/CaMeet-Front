@@ -11,7 +11,7 @@ const userData = {
                     "user_keyword2"      : "개발",
                     "user_keyword3"      : "물리",
                     "user_email"         : "gnslgns12123@naver.com",
-                    "user_status"        : "1",
+                    "user_status"        : 1,
                     "user_register_dttm" : "2022-07-29 14:00"
                 } ,
                 {
@@ -22,7 +22,7 @@ const userData = {
                     "user_keyword2"      : "춤",
                     "user_keyword3"      : "스쿼시",
                     "user_email"         : "imjjw1004@naver.com",
-                    "user_status"        : "1",
+                    "user_status"        : 1,
                     "user_register_dttm" : "2022-07-29 14:00"
                 }
             ]
