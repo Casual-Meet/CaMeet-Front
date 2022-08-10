@@ -1,7 +1,7 @@
 import React from "react";
 
 function RoomByDate() {
-  return <div>RoomByDate</div>;
+  return <div></div>;
 }
 
 export default RoomByDate;
