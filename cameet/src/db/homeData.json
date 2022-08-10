@@ -1,0 +1,43 @@
+{
+  "status": 200,
+  "success": true,
+  "message": "room_list_all 데이터 수신 성공",
+  "data": [
+    {
+      "room_id": "4",
+      "user_key": "1",
+      "room_title": "코노가실분 구합니다",
+      "room_interest": "노래",
+      "room_place": "중앙대 정문",
+      "room_date": "22-07-29",
+      "room_time": "05:14",
+      "room_headcount": "2명",
+      "room_status": "0",
+      "room_created_time": "22-07-29-05:14"
+    },
+    {
+      "room_id": "5",
+      "user_key": "2",
+      "room_title": "카페가실분 구합니다",
+      "room_interest": "수다",
+      "room_place": "중앙대 후문",
+      "room_date": "22-07-30",
+      "room_time": "07:14",
+      "room_headcount": "3명",
+      "room_status": "1",
+      "room_created_time": "22-07-29-05:20"
+    },
+    {
+      "room_id": "6",
+      "user_key": "3",
+      "room_title": "개발 테스트용입니다",
+      "room_interest": "경제",
+      "room_place": "숭실대",
+      "room_date": "22-08-10",
+      "room_time": "09:14",
+      "room_headcount": "4명",
+      "room_status": "1",
+      "room_created_time": "22-07-29-07:20"
+    }
+  ]
+}

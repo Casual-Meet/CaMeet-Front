@@ -12,8 +12,8 @@ import { createGlobalStyle } from "styled-components";
 
 // 기본 설정된 css값들 초기화
 const GlobalStyle = createGlobalStyle`
-  html {
-    position:absolute;
+html {
+  position:absolute;
   top:50%;
   left:50%;
   max-width: 100%;
@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
   height:100vh;
   max-height:100vh;
   background-size:100%;
-  }
+}
   html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
