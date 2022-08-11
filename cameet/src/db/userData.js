@@ -24,6 +24,17 @@ const userData = {
                     "user_email"         : "imjjw1004@naver.com",
                     "user_status"        : 1,
                     "user_register_dttm" : "2022-07-29 14:00"
+                },
+                {
+                    "user_name"          : "권민재", 
+                    "user_nickname"      : "국제물류학과",
+                    "user_mbti"          : "ENTP",
+                    "user_keyword1"      : "개발",
+                    "user_keyword2"      : "스타트업",
+                    "user_keyword3"      : "멋사",
+                    "user_email"         : "kmj@naver.com",
+                    "user_status"        : 1,
+                    "user_register_dttm" : "2022-07-29 14:00"
                 }
             ]
     }
