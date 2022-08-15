@@ -10,6 +10,7 @@ export const Title = styled.div`
 export const SubTitle = styled.div`
   font-size: 1rem;
   font-weight: 600;
+  margin: 0.8vw auto;
 `;
 
 // 기본 초록색 버튼컬러
