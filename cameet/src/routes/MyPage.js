@@ -8,6 +8,10 @@ import axios from "axios";
 
 const SubContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  text-align: left;
 `;
 
 const MyPage = () => {
@@ -41,7 +45,7 @@ const MyPage = () => {
           <SubTitle>관심사</SubTitle>
           <SubTitle>전화번호</SubTitle>
           <SubTitle>MBTI</SubTitle>
-        </SubContainer>
+        </SubContainer>   
       </Layout>
     </>
   );
