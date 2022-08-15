@@ -1,9 +1,11 @@
 import React from "react";
-import Nav from "../components/Nav";
+import Nav from "../components/common/Nav";
 import styled from "styled-components";
 import infoSlide from "../images/info-slide.png";
 import { COLOR } from "../utils/colors";
 import homeData from "../db/homeData.json";
+import RoomByDate from "../components/home/RoomByDate";
+import { Outlet } from "react-router";
 
 const Notice = styled.div`
   background-image: url(${infoSlide});
@@ -27,6 +29,18 @@ const Container = styled.div`
 const SelectDate = styled.ul``;
 
 function Home() {
+  const today = new Date();
+  const year = ("0" + today.getFullYear()).slice(-2);
+  const month = ("0" + (today.getMonth() + 1)).slice(-2);
+  const day = ("0" + today.getDate()).slice(-2);
+
+  const dateString = year + "-" + month + "-" + day;
+
+  console.log(dateString);
+  console.log(homeData.data);
+
+  let dates = [];
+
   return (
     <>
       <Nav />
@@ -39,6 +53,7 @@ function Home() {
           </p>
         </Notice>
         <SelectDate></SelectDate>
+        <Outlet />
       </Container>
     </>
   );
