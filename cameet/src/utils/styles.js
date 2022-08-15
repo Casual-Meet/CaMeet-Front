@@ -36,6 +36,19 @@ export const DefaultButton = styled.button`
 
 //기본 레이아웃
 export const Layout = styled.div`
-    margin: 2vw auto;
-    max-width: 85%;
-`
+  margin: 2vw auto;
+  max-width: 85%;
+`;
+
+//input 받을 때 형식
+export const Input = styled.input`
+  width: 20vw;
+  height: 3vh;
+  border: none;
+  border-bottom: solid 2px ${COLOR.mainColor};
+  &:focus {
+    background-color: #dcdcdc;
+    transition: ease-in .2s;
+    border: none;
+  }
+`;
