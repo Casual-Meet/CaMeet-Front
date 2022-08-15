@@ -30,7 +30,7 @@ function Nav() {
   return (
     <Wrapper>
       <Logo to={"/"}>
-        <img src={logoImg} />
+        <img src={logoImg} alt="캐밋" />
       </Logo>
       <div>
         <Mypage to={"/mypage"}>
