@@ -4,8 +4,9 @@ import { Title } from "../../utils/styles";
 import styled from "styled-components";
 
 const Mention = styled.span`
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 200;
+  line-height: 1.3;
 `;
 
 const Terms = () => {
