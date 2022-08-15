@@ -1,17 +1,18 @@
 // 유의사항
 import React from "react";
-import { Title } from "../../utils/styles";
+import { SubTitle } from "../../utils/styles";
 import styled from "styled-components";
 
 const Mention = styled.span`
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 200;
+  line-height: 1.3;
 `;
 
 const Terms = () => {
   return (
     <>
-      <Title>이용안내</Title>
+      <SubTitle>이용안내</SubTitle>
       <Mention>
         <ul>
           <li>
