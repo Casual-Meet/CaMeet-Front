@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Title, SubTitle, DefaultButton, Layout, Input } from "../utils/styles";
 import Terms from "../components/common/Terms";
 import axios from "axios";
-import kakaomap from "../components/roomcreate/kakaomap";
+import KakaoLocation from "../components/roomcreate/KakaoLocation";
 
 const RoomCreate = () => {
   const [roomTitle, setRoomTitle] = useState("");
@@ -104,7 +104,7 @@ const RoomCreate = () => {
             name="time"
           />
           <SubTitle>만남 장소</SubTitle>
-          <kakaomap />
+          <KakaoLocation />
           <SubTitle>모임 정원</SubTitle>
 
           <Terms />
