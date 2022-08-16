@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import logoImg from "../images/logo.png";
+import logoImg from "../../images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
-import { COLOR } from "../utils/colors";
+import { COLOR } from "../../utils/colors";
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ function Nav() {
   return (
     <Wrapper>
       <Logo to={"/"}>
-        <img src={logoImg} />
+        <img src={logoImg} alt="캐밋" />
       </Logo>
       <div>
         <Mypage to={"/mypage"}>

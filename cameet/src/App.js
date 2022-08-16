@@ -7,11 +7,25 @@ import MyPage from "./routes/MyPage";
 import RoomCreate from "./routes/RoomCreate";
 import RoomDetail from "./routes/RoomDetail";
 import { Routes, Route } from "react-router-dom";
+import RoomByDate from "./components/home/RoomByDate";
 
 import { createGlobalStyle } from "styled-components";
 
 // 기본 설정된 css값들 초기화
 const GlobalStyle = createGlobalStyle`
+html {
+  position:absolute;
+  top:50%;
+  left:50%;
+  max-width: 100%;
+  display:flex;
+  transform:translate(-50%,-50%);
+  width:100%;
+  max-width:480px;
+  height:100vh;
+  max-height:100vh;
+  background-size:100%;
+}
   html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -79,9 +93,14 @@ function App() {
     <>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />}>
+          <Route path=":roomDate" element={<RoomByDate />} />
+        </Route>
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/info" element={<Info />} />
+        <Route path="/roomcreate" element={<RoomCreate />} />
+        <Route path="/roomdetail" element={<RoomDetail />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </>
   );
