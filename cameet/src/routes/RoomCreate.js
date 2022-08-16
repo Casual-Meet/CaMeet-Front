@@ -8,6 +8,10 @@ import axios from "axios";
 const RoomCreate = () => {
   const [roomTitle, setRoomTitle] = useState("");
   const [roomInterest, setRoomInterest] = useState("");
+  const [roomdate, setRoomDate] = useState("");
+  const [roomtime, setRoomTime] = useState("");
+  // 중복 제출 방지
+  const [disabled, setDisabled] = useState(false);
 
   const onChangeRoomTitle = useCallback((e) => {
     setRoomTitle(e.target.value);
@@ -18,8 +22,10 @@ const RoomCreate = () => {
 
   const onSubmit = useCallback(
     (e) => {
+      setDisabled(true);
       e.preventDefault();
       console.log(roomTitle);
+      alert("방이 생성되었습니다.");
 
       axios
         .post("http://localhost:8000/room/create/", {
@@ -40,6 +46,8 @@ const RoomCreate = () => {
         .catch((error) => {
           console.log(error);
         });
+
+      setDisabled(true);
     },
     [roomTitle]
   );
@@ -55,19 +63,31 @@ const RoomCreate = () => {
             <Input
               type="text"
               name="roomtitle"
+              placeholder="방 제목을 입력하세요"
               value={roomTitle}
               onChange={onChangeRoomTitle}
+              required
+              autoFocus
             />
           </div>
           <SubTitle>관심사</SubTitle>
+          <div>
+            <Input
+              type="text"
+              name="roominterest"
+              placeholder="ex. #개발"
+              value={roomInterest}
+              onChange={onChangeRoomInterest}
+              required
+            />
+          </div>
           <SubTitle>모임 날짜</SubTitle>
+          <Input type="date" min="2021-01-01" max="2050-01-01" name="date" />
+          <Input type="time" name="time" />
           <SubTitle>만남 장소</SubTitle>
           <SubTitle>모임 정원</SubTitle>
           <Terms />
-          <DefaultButton
-            type="submit"
-            onClick={() => alert("방이 생성되었습니다.")}
-          >
+          <DefaultButton type="submit" disabled={disabled}>
             생성하기
           </DefaultButton>
         </form>

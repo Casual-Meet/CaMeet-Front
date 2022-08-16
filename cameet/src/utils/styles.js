@@ -5,7 +5,7 @@ import { COLOR } from "./colors";
 export const Title = styled.div`
   font-size: 1.375rem;
   font-weight: 600;
-  margin: 1vw auto;
+  margin: 2vw auto;
 `;
 export const SubTitle = styled.div`
   font-size: 1rem;
@@ -26,7 +26,7 @@ export const DefaultButton = styled.button`
   background-color: ${COLOR.mainColor};
   cursor: pointer;
   border: none;
-  width: 8vw;
+  width: 28%;
   height: 5vh;
 
   display: flex;
@@ -42,13 +42,15 @@ export const Layout = styled.div`
 
 //input 받을 때 형식
 export const Input = styled.input`
+  margin-bottom: 2vw;
+  margin-right: 2vw;
   width: 20vw;
   height: 3vh;
   border: none;
   border-bottom: solid 2px ${COLOR.mainColor};
   &:focus {
     background-color: #dcdcdc;
-    transition: ease-in .2s;
-    border: none;
+    transition: ease-in 0.2s;
+    outline: none;
   }
 `;
