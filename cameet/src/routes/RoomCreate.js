@@ -4,13 +4,16 @@ import styled from "styled-components";
 import { Title, SubTitle, DefaultButton, Layout, Input } from "../utils/styles";
 import Terms from "../components/common/Terms";
 import axios from "axios";
-import KakaoLocation from "../components/roomcreate/KakaoLocation";
+// import KakaoLocation from "../components/roomcreate/KakaoLocation";
+import InputForm from "../components/roomcreate/InputForm";
 
 const RoomCreate = () => {
   const [roomTitle, setRoomTitle] = useState("");
   const [roomInterest, setRoomInterest] = useState("");
   const [roomdate, setRoomDate] = useState("");
   const [roomtime, setRoomTime] = useState("");
+  const [inputText, setInputText] = useState("");
+  const [place, setPlace] = useState("");
   // 로딩 상태
   const [loading, setLoading] = useState(false);
   // 중복 제출 방지
@@ -28,11 +31,22 @@ const RoomCreate = () => {
   const onChangeRoomTime = useCallback((e) => {
     setRoomTime(e.target.value);
   }, []);
+  const onChangeInputText = useCallback((e) => {
+    setInputText(e.target.value);
+  }, []);
+
+  //카카오맵 api 검색
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setPlace(inputText);
+    setInputText("");
+  };
 
   const onSubmit = useCallback((e) => {
     setDisabled(true);
     e.preventDefault();
     setLoading(true);
+    setPlace(inputText);
     // alert("방이 생성되었습니다.");
 
     axios
@@ -46,10 +60,16 @@ const RoomCreate = () => {
       .then((data) => {
         setRoomTitle(data.data.room_title);
         setRoomInterest(data.data.room_interest);
+        setRoomDate(data.data.room_date);
+        setRoomTime(data.data.room_time);
+        setPlace(data.data.room_place);
       })
       .catch((error) => {
         setRoomTitle("");
         setRoomInterest("");
+        setRoomDate("");
+        setRoomTime("");
+        setInputText("");
       })
       .catch((error) => {
         console.log(error);
@@ -104,7 +124,7 @@ const RoomCreate = () => {
             name="time"
           />
           <SubTitle>만남 장소</SubTitle>
-          <KakaoLocation />
+          <InputForm />
           <SubTitle>모임 정원</SubTitle>
 
           <Terms />
