@@ -2505,6 +2505,16 @@ ajv@^8.0.0, ajv@^8.6.0, ajv@^8.8.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
+animate.css@^3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.7.2.tgz#e73e0d50e92cb1cfef1597d9b38a9481020e08ea"
+  integrity sha512-0bE8zYo7C0KvgOYrSVfrzkbYk6IOTVPNqkiHg2cbyF4Pq/PXzilz4BRWA3hwEUBoMp5VBgrC29lQIZyhRWdBTw==
+
+animation.css@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/animation.css/-/animation.css-0.1.0.tgz#235f2df69e1501ef39cf17f8f70290e7c0d77c69"
+  integrity sha512-3uP0qvR1XYmrZRO0Iydv/j8oG+XOD80hfkvW35MmkmbymKp+q+cyn48XwjHxlpQKisTb2ZbbdI98VAGGQYS7LQ==
+
 ansi-escapes@^4.2.1, ansi-escapes@^4.3.1:
   version "4.3.2"
   resolved "https://registry.npmjs.org/ansi-escapes/-/ansi-escapes-4.3.2.tgz"
@@ -7481,6 +7491,11 @@ react-live-clock@^6.0.6:
   resolved "https://registry.npmjs.org/react-live-clock/-/react-live-clock-6.0.6.tgz"
   integrity sha512-UDRz8c+eOqxeplcsK6FSHx7OAmnLKS0/R4sfJsxaSNvZ3QkEL8si9Zi41muc6To8LsVerV1WV/FynYkgBXIWFg==
 
+react-modal-slider@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/react-modal-slider/-/react-modal-slider-0.2.3.tgz#832aee5d32acfa703e171490ad4acb8c4c456c99"
+  integrity sha512-vEV64j/5qZi9nNPh/Pj85x3dOHE9w92rEciaXAvhNLznaTSI+Oql+x9Ej5K3iuE8js3WHRR0wRWIe0gzpITdbQ==
+
 react-redux@^8.0.2:
   version "8.0.2"
   resolved "https://registry.npmjs.org/react-redux/-/react-redux-8.0.2.tgz"
@@ -7567,6 +7582,13 @@ react-scripts@5.0.1:
     workbox-webpack-plugin "^6.4.1"
   optionalDependencies:
     fsevents "^2.3.2"
+
+react-slider-modal@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/react-slider-modal/-/react-slider-modal-1.3.1.tgz#e66cd3f0eb5faa62532401efbf53c984b80461c1"
+  integrity sha512-ikCyn00L993TgYzIflby6DMv15S3wDAXhul7mGWrymjZxNkDj9SVq9TNWTmozr271dI+1xWZ20H6OAqtBetk0A==
+  dependencies:
+    animate.css "^3.7.2"
 
 react-transition-group@^4.4.2:
   version "4.4.5"

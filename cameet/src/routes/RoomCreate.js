@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from "react";
 import Nav from "../components/common/Nav";
-import styled from "styled-components";
 import { Title, SubTitle, DefaultButton, Layout, Input } from "../utils/styles";
 import Terms from "../components/common/Terms";
 import axios from "axios";
@@ -31,23 +30,11 @@ const RoomCreate = () => {
   const onChangeRoomTime = useCallback((e) => {
     setRoomTime(e.target.value);
   }, []);
-  const onChangeInputText = useCallback((e) => {
-    setInputText(e.target.value);
-  }, []);
-
-  //카카오맵 api 검색
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setPlace(inputText);
-    setInputText("");
-  };
 
   const onSubmit = useCallback((e) => {
     setDisabled(true);
     e.preventDefault();
     setLoading(true);
-    setPlace(inputText);
-    // alert("방이 생성되었습니다.");
 
     axios
       .post("http://localhost:8000/room/create/", {
@@ -77,7 +64,7 @@ const RoomCreate = () => {
     alert("방이 생성되었습니다.");
     setLoading(false);
     setDisabled(true);
-  });
+  }, []);
 
   return (
     <>
@@ -126,7 +113,6 @@ const RoomCreate = () => {
           <SubTitle>만남 장소</SubTitle>
           <InputForm />
           <SubTitle>모임 정원</SubTitle>
-
           <Terms />
           <DefaultButton type="submit" disabled={disabled}>
             생성하기

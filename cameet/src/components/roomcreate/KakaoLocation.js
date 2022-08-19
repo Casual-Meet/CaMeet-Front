@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const MapContainer = styled.div`
-  margin: 2vw 0;
+  margin-bottom: 2vw;
   width: 300px;
   height: 300px;
 `;
@@ -55,15 +55,7 @@ const KakaoLocation = ({ searchPlace }) => {
     }
   }, [searchPlace]);
 
-  return (
-    <div
-      id="myMap"
-      style={{
-        width: "300px",
-        height: "300px",
-      }}
-    ></div>
-  );
+  return <MapContainer id="myMap"></MapContainer>;
 };
 
 export default KakaoLocation;
