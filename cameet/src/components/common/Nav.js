@@ -8,6 +8,7 @@ import { COLOR } from "../../utils/colors";
 import Slider from "react-slider-modal";
 import Info from "../../routes/Info";
 
+
 const Wrapper = styled.div`
   display: flex;
   padding: 20px;
@@ -55,7 +56,7 @@ function Nav() {
             setSlideShow(e);
           }}
           toggle={slideShow}
-          sliderStyle={{ width: "50%", height: "100%", top: "0px" }}
+          sliderStyle={{ width: "80%", height: "100%", top: "0px" }}
           closeModal={() => {
             setSlideShow(false);
           }}
