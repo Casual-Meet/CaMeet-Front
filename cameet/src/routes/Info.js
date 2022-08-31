@@ -30,9 +30,9 @@ const Info = () => {
     <>
       <InfoWrapper>
         <Title>내 정보</Title>
-        {loading ? (
+        {/* {loading ? (
           <Loader>loading</Loader>
-        ):()}
+        ):()} */}
       </InfoWrapper>
     </>
   );
