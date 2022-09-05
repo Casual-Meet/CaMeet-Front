@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/CaMeet-Front/static/css/main.e16da676.css",
+    "main.js": "/CaMeet-Front/static/js/main.6fa98eb6.js",
+    "static/media/info-slide.png": "/CaMeet-Front/static/media/info-slide.bfca543b687cc20a5500.png",
+    "index.html": "/CaMeet-Front/index.html",
+    "main.e16da676.css.map": "/CaMeet-Front/static/css/main.e16da676.css.map",
+    "main.6fa98eb6.js.map": "/CaMeet-Front/static/js/main.6fa98eb6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e16da676.css",
+    "static/js/main.6fa98eb6.js"
+  ]
+}
