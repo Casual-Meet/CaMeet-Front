@@ -3,16 +3,15 @@ import Nav from "../components/common/Nav";
 import styled from "styled-components";
 import infoSlide from "../images/info-slide.png";
 import { COLOR } from "../utils/colors";
-import { Outlet } from "react-router";
 import { useQuery } from "react-query";
 import getHomeData from "../api/getHomeData";
 import getDates from "../functions/getDates";
 import { getDays } from "../functions/getDays";
+import RoomByDate from "../components/home/RoomByDate";
 
 function Home() {
   const { data, isLoading } = useQuery(["homedata"], getHomeData);
   const dates = getDates();
-  console.log(dates);
   return (
     <>
       <Nav />
@@ -32,7 +31,15 @@ function Home() {
             </DatesBox>
           ))}
         </SelectDate>
-        <Outlet />
+        {/* data없으면 오류나므로 &&처리 */}
+        {isLoading
+          ? "Loading"
+          : data?.map((room) => (
+              <>
+                <RoomByDate room={room} key={room.id} />
+                <hr></hr>
+              </>
+            ))}
       </Container>
     </>
   );
