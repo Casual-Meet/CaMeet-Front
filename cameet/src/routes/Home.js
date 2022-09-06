@@ -3,10 +3,40 @@ import Nav from "../components/common/Nav";
 import styled from "styled-components";
 import infoSlide from "../images/info-slide.png";
 import { COLOR } from "../utils/colors";
-import homeData from "../db/homeData.json";
-import RoomByDate from "../components/home/RoomByDate";
 import { Outlet } from "react-router";
+import { useQuery } from "react-query";
+import getHomeData from "../api/getHomeData";
+import getDates from "../functions/getDates";
+import { getDays } from "../functions/getDays";
 
+function Home() {
+  const { data, isLoading } = useQuery(["homedata"], getHomeData);
+  const dates = getDates();
+  console.log(dates);
+  return (
+    <>
+      <Nav />
+      <Container>
+        <Notice>
+          <p>
+            동아리보다 가벼운,
+            <br />
+            #캐밋
+          </p>
+        </Notice>
+        <SelectDate>
+          {dates.map((day) => (
+            <DatesBox>
+              <Dates>{day.slice(8)}</Dates>
+              <Day>{getDays(day)}</Day>
+            </DatesBox>
+          ))}
+        </SelectDate>
+        <Outlet />
+      </Container>
+    </>
+  );
+}
 const Notice = styled.div`
   background-image: url(${infoSlide});
   background-size: cover;
@@ -26,37 +56,22 @@ const Notice = styled.div`
 const Container = styled.div`
   padding: 2vw;
 `;
-const SelectDate = styled.ul``;
-
-function Home() {
-  const today = new Date();
-  const year = ("0" + today.getFullYear()).slice(-2);
-  const month = ("0" + (today.getMonth() + 1)).slice(-2);
-  const day = ("0" + today.getDate()).slice(-2);
-
-  const dateString = year + "-" + month + "-" + day;
-
-  console.log(dateString);
-  console.log(homeData.data);
-
-  let dates = [];
-
-  return (
-    <>
-      <Nav />
-      <Container>
-        <Notice>
-          <p>
-            동아리보다 가벼운,
-            <br />
-            #캐밋입니다.
-          </p>
-        </Notice>
-        <SelectDate></SelectDate>
-        <Outlet />
-      </Container>
-    </>
-  );
-}
+const SelectDate = styled.ul`
+  display: flex;
+  justify-content: space-evenly;
+  width: 200%;
+`;
+const DatesBox = styled.div`
+  padding: 10px;
+`;
+const Dates = styled.div`
+  font-size: 24px;
+  padding-bottom: 10px;
+  font-weight: bold;
+`;
+const Day = styled.div`
+  text-align: center;
+  font-size: 10;
+`;
 
 export default Home;
