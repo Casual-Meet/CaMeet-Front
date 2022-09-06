@@ -49,7 +49,7 @@ function Home() {
           <p>
             동아리보다 가벼운,
             <br />
-            #캐밋
+            #캐밋입니다.
           </p>
         </Notice>
         <SelectDate></SelectDate>
