@@ -21,9 +21,8 @@ function Home() {
     dates.forEach((day) => (isToday(day) ? setSelectedDate(day) : null));
     setDates(dates);
   }, []);
-  console.log(selectedDate);
-  // 2주일치 날짜 데이터 받아오기
 
+  // 2주일치 날짜 데이터 받아오기
   return (
     <>
       <Nav />
@@ -54,7 +53,9 @@ function Home() {
         {/* data없으면 오류나므로 &&처리 */}
         {isLoading
           ? "Loading"
-          : data?.map((room) => (
+          : selectedDate &&
+            data &&
+            data[selectedDate]?.map((room) => (
               <>
                 <Link to={`/roomdetail/${room.id}`}>
                   <RoomByDate room={room} key={room.id} />

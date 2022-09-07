@@ -11,9 +11,9 @@ export default function getDates() {
     const year = nextdates.getFullYear();
     // 10보다 작은 경우 0을 앞에 붙여줌
     const month =
-      nextdates.getMonth() < 10
-        ? "0" + nextdates.getMonth()
-        : nextdates.getMonth();
+      nextdates.getMonth() + 1 < 10
+        ? "0" + (nextdates.getMonth() + 1)
+        : nextdates.getMonth() + 1;
 
     // 10보다 작은 경우 0을 앞에 붙여줌
     const day =

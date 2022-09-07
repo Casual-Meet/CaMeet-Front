@@ -1,7 +1,7 @@
 export function getDays(day) {
   const args = day.split("-");
   const newday = new Date(args[0], args[1], args[2]);
-  console.log(newday);
+
   switch (newday.getDay()) {
     case 1:
       return "월";
