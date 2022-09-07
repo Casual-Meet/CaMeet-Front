@@ -9,10 +9,12 @@ import getDates from "../functions/getDates";
 import { getDays } from "../functions/getDays";
 import RoomByDate from "../components/home/RoomByDate";
 import isToday from "../functions/isToday";
+import { Link } from "react-router-dom";
 
 function Home() {
   const { data, isLoading } = useQuery(["homedata"], getHomeData);
   const [dates, setDates] = useState([]);
+  // recoil 사용 고민
   const [selectedDate, setSelectedDate] = useState("");
   useEffect(() => {
     const dates = getDates();
@@ -54,7 +56,9 @@ function Home() {
           ? "Loading"
           : data?.map((room) => (
               <>
-                <RoomByDate room={room} key={room.id} />
+                <Link to={`/roomdetail/${room.id}`}>
+                  <RoomByDate room={room} key={room.id} />
+                </Link>
                 <hr></hr>
               </>
             ))}
