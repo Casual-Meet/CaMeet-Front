@@ -75,11 +75,20 @@ body {
   margin: 0;
   box-sizing: border-box;
   width: 100%;
+  
 }
 html,
 body{
 width:100%;
 overflow-x:hidden;
+}
+a{
+  text-decoration:none;
+  color:inherit;
+}
+a:visited{
+  text-decoration: none;
+  color:inherit;
 }
 `;
 const queryClient = new QueryClient();
