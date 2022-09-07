@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Nav from "../components/common/Nav";
 import styled from "styled-components";
 import infoSlide from "../images/info-slide.png";
@@ -8,10 +8,20 @@ import getHomeData from "../api/getHomeData";
 import getDates from "../functions/getDates";
 import { getDays } from "../functions/getDays";
 import RoomByDate from "../components/home/RoomByDate";
+import isToday from "../functions/isToday";
 
 function Home() {
   const { data, isLoading } = useQuery(["homedata"], getHomeData);
-  const dates = getDates();
+  const [dates, setDates] = useState([]);
+  const [selectedDate, setSelectedDate] = useState("");
+  useEffect(() => {
+    const dates = getDates();
+    dates.forEach((day) => (isToday(day) ? setSelectedDate(day) : null));
+    setDates(dates);
+  }, []);
+  console.log(selectedDate);
+  // 2주일치 날짜 데이터 받아오기
+
   return (
     <>
       <Nav />
@@ -24,8 +34,16 @@ function Home() {
           </p>
         </Notice>
         <SelectDate>
-          {dates.map((day) => (
-            <DatesBox>
+          {dates.map((day, index) => (
+            <DatesBox
+              key={index}
+              style={{
+                backgroundColor:
+                  selectedDate === day ? COLOR.mainColor : "white",
+                color: selectedDate === day ? COLOR.white : "black",
+              }}
+              onClick={() => setSelectedDate(day)}
+            >
               <Dates>{day.slice(8)}</Dates>
               <Day>{getDays(day)}</Day>
             </DatesBox>
@@ -65,11 +83,15 @@ const Container = styled.div`
 `;
 const SelectDate = styled.ul`
   display: flex;
-  justify-content: space-evenly;
-  width: 200%;
+  width: 100%;
+  overflow: scroll;
+  padding: 10px;
 `;
 const DatesBox = styled.div`
   padding: 10px;
+  margin-right: 20px;
+  border-radius: 10px;
+  cursor: pointer;
 `;
 const Dates = styled.div`
   font-size: 24px;

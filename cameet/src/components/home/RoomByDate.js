@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { COLOR } from "../../utils/colors";
 const RoomByDate = ({ room }) => {
+  // room이 가득찼으면
+  const fullRoom = room.room_status === 2;
   return (
     <RoomContainer>
       <Time>{room.room_time.substr(0, 5)}</Time>
@@ -14,10 +16,10 @@ const RoomByDate = ({ room }) => {
       </SectionContainer>
       <ApplyBtn
         style={{
-          backgroundColor: room.room_status === 2 ? COLOR.red : COLOR.blue,
+          backgroundColor: fullRoom ? COLOR.red : COLOR.blue,
         }}
       >
-        {room.room_status === 2 ? "마감" : "신청가능"}
+        {fullRoom ? "마감" : "신청가능"}
       </ApplyBtn>
     </RoomContainer>
   );
