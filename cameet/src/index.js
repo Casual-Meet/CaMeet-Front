@@ -75,7 +75,13 @@ body {
   margin: 0;
   box-sizing: border-box;
   width: 100%;
-  
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+      /* 스크롤 바 hidden */
+}
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+    /* 스크롤 바 hidden */
 }
 html,
 body{
