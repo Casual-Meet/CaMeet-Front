@@ -21,6 +21,7 @@ function Home() {
     dates.forEach((day) => (isToday(day) ? setSelectedDate(day) : null));
     setDates(dates);
   }, []);
+  console.log(data);
   // 2주일치 날짜 데이터 받아오기
   return (
     <>
@@ -48,7 +49,7 @@ function Home() {
                     : getDays(day) === "일"
                     ? COLOR.red
                     : "black",
-                    // 토요일이면 blue, 일요일이면 red, 가독성 조졌다...
+                // 토요일이면 blue, 일요일이면 red, 가독성 조졌다...
               }}
               onClick={() => setSelectedDate(day)}
             >
