@@ -6,21 +6,40 @@ import styled from "styled-components";
 import { Layout } from "../utils/styles";
 
 const Dom = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   text-align: center;
 `;
-
+const LogoDom = styled.div`
+  margin-top: 20vw;
+`;
 const Logo = styled.img`
   width: 80%;
 `;
+const Google = styled.img`
+  width: 60%;
+  margin-top: 0.7vw;
+`;
+
+const KaKao = styled.img`
+  width: 60%;
+`;
+
 const LoginPage = () => {
   return (
     <Layout>
-      <Logo src={cameetLogo} alt="#" />
-      <Logo src={kakaoLogin} alt="#" />
-      <Logo src={googleLogin} alt="#" />
+      <LogoDom>
+        <Dom>
+          <Logo src={cameetLogo} alt="#" />
+          <p>관심사를 기반으로</p>
+          <p>캐주얼하게 만난다!</p>
+        </Dom>
+
+        <Dom>
+          <Google src={googleLogin} alt="#" />
+        </Dom>
+        <Dom>
+          <KaKao src={kakaoLogin} alt="#" />
+        </Dom>
+      </LogoDom>
     </Layout>
   );
 };
