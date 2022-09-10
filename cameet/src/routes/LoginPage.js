@@ -25,6 +25,7 @@ const KaKao = styled.img`
 `;
 const Font = styled.p`
   color: ${COLOR.gray};
+  font-size: 14pt;
 `;
 const ContentDom = styled.div`
   position: absolute;
