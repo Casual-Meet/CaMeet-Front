@@ -10,7 +10,7 @@ const Dom = styled.div`
   text-align: center;
 `;
 const LogoDom = styled.div`
-  margin-bottom: 5vw;
+  margin-bottom: 3vw;
   text-align: center;
 `;
 const Logo = styled.img`
