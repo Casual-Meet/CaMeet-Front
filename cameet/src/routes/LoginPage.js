@@ -4,34 +4,41 @@ import kakaoLogin from "../images/kakaologin.png";
 import googleLogin from "../images/googlelogin.png";
 import styled from "styled-components";
 import { Layout } from "../utils/styles";
+import { COLOR } from "../utils/colors";
 
 const Dom = styled.div`
   text-align: center;
 `;
 const LogoDom = styled.div`
-  margin-top: 20vw;
+  margin-bottom: 5vw;
+  text-align: center;
 `;
 const Logo = styled.img`
-  width: 80%;
+  width: 90%;
 `;
 const Google = styled.img`
-  width: 60%;
-  margin-top: 0.7vw;
+  width: 65%;
+  margin-top: 1vw;
 `;
-
 const KaKao = styled.img`
-  width: 60%;
+  width: 63%;
 `;
-
+const Font = styled.p`
+  color: ${COLOR.gray};
+`;
+const ContentDom = styled.div`
+  position: absolute;
+  top: 25%;
+`;
 const LoginPage = () => {
   return (
     <Layout>
-      <LogoDom>
-        <Dom>
+      <ContentDom>
+        <LogoDom>
           <Logo src={cameetLogo} alt="#" />
-          <p>관심사를 기반으로</p>
-          <p>캐주얼하게 만난다!</p>
-        </Dom>
+          <Font>관심사를 기반으로</Font>
+          <Font>캐주얼하게 만난다!</Font>
+        </LogoDom>
 
         <Dom>
           <Google src={googleLogin} alt="#" />
@@ -39,7 +46,7 @@ const LoginPage = () => {
         <Dom>
           <KaKao src={kakaoLogin} alt="#" />
         </Dom>
-      </LogoDom>
+      </ContentDom>
     </Layout>
   );
 };
