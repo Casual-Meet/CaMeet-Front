@@ -4,6 +4,8 @@ import { Layout, DefaultButton } from "../utils/styles";
 import { COLOR } from "../utils/colors";
 import styled from "styled-components";
 import "../App.css";
+import { useNavigate } from "react-router";
+import axios from "axios";
 
 const InfoDom = styled.div`
   font-size: 15pt;
@@ -47,11 +49,36 @@ const MailDom = styled.div`
   white-space: nowrap;
 `;
 const Info = () => {
+  let navigate = useNavigate();
+  const onSubmit = () => {
+    axios
+      .post(
+        "?",
+        {
+          nickname: nicknameRef.current.value,
+          name: nameRef.current.value,
+          mbti: mbtiRef.current.value,
+          exciteOne: exciteOneRef.current.value,
+          exciteTwo: exciteTwoRef.current.value,
+          email: emailRef.current.value,
+        },
+        {
+          "Content-Type": "application/json",
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        alert("추가완료!");
+        navigate("/");
+      });
+  };
+
   const nicknameRef = useRef(null);
   const nameRef = useRef(null);
   const mbtiRef = useRef(null);
   const exciteOneRef = useRef(null);
   const exciteTwoRef = useRef(null);
+  const emailRef = useRef(null);
 
   return (
     <>
@@ -63,38 +90,42 @@ const Info = () => {
             <Dom>
               닉네임<Red>*</Red>
             </Dom>
-            <Input placeholder="닉네임을 입력해주세요" />
+            <Input placeholder="닉네임을 입력해주세요" ref={nicknameRef} />
           </BoxStyle>
           <BoxStyle>
             <Dom>
               이름<Red>*</Red>
             </Dom>
-            <Input placeholder="이름을 입력해주세요" />
+            <Input placeholder="이름을 입력해주세요" ref={nameRef} />
           </BoxStyle>
           <BoxStyle>
             <Dom>MBTI</Dom>
-            <Input placeholder="MBTI를 입력해주세요" />
+            <Input placeholder="MBTI를 입력해주세요" ref={mbtiRef} />
           </BoxStyle>
           <BoxStyle>
             <Dom>
               관심사1<Red>*</Red>
             </Dom>
-            <Input placeholder="MBTI를 입력해주세요" />
+            <label></label>
           </BoxStyle>
           <BoxStyle>
             <Dom>
               관심사2<Red>*</Red>
             </Dom>
-            <Input placeholder="MBTI를 입력해주세요" />
+            <label></label>
           </BoxStyle>
           <BoxStyle>
             <Dom>메일인증</Dom>
             <MailDom>
-              <MailInput placeholder="학교 이메일을 입력해주세요" />
+              <MailInput
+                placeholder="학교 이메일을 입력해주세요"
+                ref={emailRef}
+              />
               <MailButton>메일인증</MailButton>
             </MailDom>
           </BoxStyle>
           <DefaultButton>저장하기</DefaultButton>
+          {/* <DefaultButton onClick={onSubmit}>저장하기</DefaultButton> */}
         </InfoDom>
       </Layout>
     </>
