@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Title, SubTitle, Layout } from "../utils/styles";
@@ -11,6 +12,10 @@ const InfoWrapper = styled.div`
 const Loader = styled.div`
 
 `;
+=======
+import React from "react";
+import Nav from "../components/common/Nav";
+>>>>>>> 1d6764994e30c1ef6dcf6b59c40b0b4c106da5ae
 
 const Info = () => {
   const [makeRoom, setMakeRoom] = useState([]);
@@ -28,12 +33,17 @@ const Info = () => {
   console.log(makeRoom);
   return (
     <>
+<<<<<<< HEAD
       <InfoWrapper>
         <Title>내 정보</Title>
         {/* {loading ? (
           <Loader>loading</Loader>
         ):()} */}
       </InfoWrapper>
+=======
+      <Nav />
+      <div>info</div>
+>>>>>>> 1d6764994e30c1ef6dcf6b59c40b0b4c106da5ae
     </>
   );
 };
