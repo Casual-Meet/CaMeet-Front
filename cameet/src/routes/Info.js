@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Nav from "../components/common/Nav";
 
 const Info = () => {
   return (
-    <div>Info</div>
-  )
-}
+    <>
+      <Nav />
+      <div>info</div>
+    </>
+  );
+};
 
-export default Info
+export default Info;
