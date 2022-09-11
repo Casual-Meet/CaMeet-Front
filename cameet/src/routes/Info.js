@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Title, SubTitle, Layout } from "../utils/styles";
@@ -27,13 +28,11 @@ const Info = () => {
   }, []);
   console.log(makeRoom);
   return (
-    <>
-      <InfoWrapper>
+      <>
         <Title>내 정보</Title>
         {/* {loading ? (
           <Loader>loading</Loader>
         ):()} */}
-      </InfoWrapper>
     </>
   );
 };
