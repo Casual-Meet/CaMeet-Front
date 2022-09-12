@@ -14,7 +14,7 @@ export const StyledInput = styled.input`
   // background-image: ${(props) => props.btnImg || "#"};
   border-radius: 20px;
   cursor: pointer;
-  position: absolute;
+  //   position: absolute;
   z-index: 1;
   &:checked {
     border: 2px solid ${COLOR.mainColor};
@@ -30,25 +30,22 @@ export const Span = styled.span`
 export const SpanDom = styled.div`
   text-align: center;
   width: 65px;
-  height: 35px;
-  padding-top: 10px;
+  margin: -32px 0px 0px 3px;
 `;
+
+export const InputDom = styled.div``;
 
 export const Mbti = ({ num, color, text }) => {
   return (
     <>
-      <StyledLabel htmlFor={num} name="radio">
-        <StyledInput
-          type="radio"
-          id={num}
-          name="radio"
-          btnColor={color}
-          // onClick={mbtiSubmit("철학")}
-        />
-        <SpanDom>
-          <Span>{text}</Span>
-        </SpanDom>
-      </StyledLabel>
+      <InputDom>
+        <StyledInput type="radio" id={num} name="radio" btnColor={color} />
+        <StyledLabel htmlFor={num} name="radio">
+          <SpanDom>
+            <Span>{text}</Span>
+          </SpanDom>
+        </StyledLabel>
+      </InputDom>
     </>
   );
 };
