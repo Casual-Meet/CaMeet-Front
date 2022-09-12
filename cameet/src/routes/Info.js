@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
 import Nav from "../components/common/Nav";
-import { Layout, DefaultButton } from "../utils/styles";
+import { Layout, DefaultButton, Input } from "../utils/styles";
 import { COLOR } from "../utils/colors";
 import styled from "styled-components";
 import "../App.css";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { Mbti } from "../utils/mbti";
+import data from "../db/mbti.json";
 
 const InfoDom = styled.div`
   font-size: 15pt;
@@ -18,11 +20,8 @@ const Red = styled.p`
 const Dom = styled.div`
   display: flex;
 `;
-const Input = styled.input`
+const AInput = styled(Input)`
   width: 100%;
-  border-radius: 0;
-  border: 1px solid ${COLOR.gray};
-  padding: 10px;
   margin: 7px 0px;
 `;
 //텍스트+input부붙
@@ -31,104 +30,71 @@ const BoxStyle = styled.div`
   margin: 20px 0px;
 `;
 //메일부분 스타일링
-const MailInput = styled.input`
-  width: 77%;
+const MailInput = styled(Input)`
+  width: 100%;
   margin: 7px 7px 0px 0px;
-
-  border-radius: 0;
-  border: 1px solid ${COLOR.gray};
-  padding: 10px;
 `;
 
-const MailButton = styled.button`
-  width: 20%;
-  padding: 6px;
-  background-color: ${COLOR.mainColor};
-  border-radius: 40px;
-  border: 1px solid ${COLOR.mainColor};
-  color: #ffffff;
-`;
+// const MailButton = styled.button`
+//   width: 20%;
+//   padding: 6px;
+//   background-color: ${COLOR.mainColor};
+//   border-radius: 40px;
+//   border: 1px solid ${COLOR.mainColor};
+//   color: #ffffff;
+// `;
 const MailDom = styled.div`
   white-space: nowrap;
 `;
-// 체크박스 스타일링
-const StyledLabel = styled.label`
-  margin-right: 1vw;
-`;
-const StyledInput = styled.input`
-  appearance: none;
-  width: 60px;
-  height: 35px;
-
-  border: 1px solid transparent;
-  background-color: ${(props) => props.btnColor || "white"};
-  // background-image: ${(props) => props.btnImg || "#"};
-  border-radius: 20px;
-  cursor: pointer;
-  position: absolute;
-  z-index: 1;
-  &:checked {
-    border: 2px solid ${COLOR.mainColor};
-  }
-`;
-const Span = styled.span`
-  position: relative;
-  z-index: 2;
-  font-size: 12pt;
-  font-weight: 400;
-  cursor: pointer;
-`;
-const SpanDom = styled.div`
-  text-align: center;
-  width: 65px;
-  height: 35px;
-  padding-top: 10px;
-`;
-const ExciteBox = styled.div`
+const MbtiDom = styled.div`
   display: flex;
-  margin-top: 7px;
+  overflow: scroll;
 `;
 
 const Info = () => {
-  let [exciteOne, setExciteOne] = useState();
-  let [exciteTwo, setExciteTwo] = useState();
+  const [mbti, setMbti] = useState();
 
-  const exciteOneSubmit = (excite) => {
-    setExciteOne(excite);
+  const mbtiSubmit = (a) => {
     console.log("good");
-  };
-  const exciteTwoSubmit = (excite) => {
-    setExciteTwo(excite);
-    console.log("good");
+    setMbti(a);
+    console.log(mbti);
   };
 
   let navigate = useNavigate();
+  const mailSubmit = () => {
+    axios.post(
+      "https://cameet.site/accounts/emailcheck",
+      { email: emailRef.current.value },
+      { "Content-Type": "application/json" }
+    );
+  };
   const onSubmit = () => {
-    axios
-      .post(
-        "backend-api",
-        {
-          nickname: nicknameRef.current.value,
-          name: nameRef.current.value,
-          mbti: mbtiRef.current.value,
-          exciteOne: exciteOne,
-          exciteTwo: exciteTwo,
-          email: emailRef.current.value,
-        },
-        {
-          "Content-Type": "application/json",
-        }
-      )
-      .then((res) => {
-        console.log(res);
-        alert("추가완료!");
-        navigate("/");
-      });
+    // axios
+    //   .post(
+    //     "backend-api",
+    //     {
+    //       nickname: nicknameRef.current.value,
+    //       name: nameRef.current.value,
+    //       mbti: mbtiRef.current.value,
+    //       exciteOne: exciteOneRef.current.value,
+    //       exciteTwo: exciteTwoRef.current.value,
+    //     },
+    //     {
+    //       "Content-Type": "application/json",
+    //     }
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //     alert("추가완료!");
+    //     navigate("/");
+    //   });
   };
 
   const nicknameRef = useRef(null);
   const nameRef = useRef(null);
-  const mbtiRef = useRef(null);
+  // const mbtiRef = useRef(null);
+  const exciteOneRef = useRef(null);
+  const exciteTwoRef = useRef(null);
   const emailRef = useRef(null);
 
   return (
@@ -141,107 +107,50 @@ const Info = () => {
             <Dom>
               닉네임<Red>*</Red>
             </Dom>
-            <Input placeholder="닉네임을 입력해주세요" ref={nicknameRef} />
+            <AInput placeholder="닉네임을 입력해주세요" ref={nicknameRef} />
           </BoxStyle>
           <BoxStyle>
             <Dom>
               이름<Red>*</Red>
             </Dom>
-            <Input placeholder="이름을 입력해주세요" ref={nameRef} />
+            <AInput placeholder="이름을 입력해주세요" ref={nameRef} />
           </BoxStyle>
           <BoxStyle>
-            <Dom>MBTI</Dom>
-            <Input placeholder="MBTI를 입력해주세요" ref={mbtiRef} />
+            <Dom>
+              MBTI<Red>*</Red>
+            </Dom>
+            {/* <Input placeholder="MBTI를 입력해주세요" ref={mbtiRef} /> */}
+
+            <MbtiDom>
+              {data.mbtis.map((mbti) => (
+                <Mbti
+                  num={mbti.id}
+                  color={mbti.color}
+                  text={mbti.mbti}
+                  key={mbti.id}
+                  onClick={() => mbtiSubmit(`${mbti.mbti}`)}
+                ></Mbti>
+              ))}
+            </MbtiDom>
           </BoxStyle>
+          {/* 관심사 */}
           <BoxStyle>
             <Dom>
               관심사1<Red>*</Red>
             </Dom>
-            <ExciteBox>
-              <StyledLabel htmlFor="radioOne1" name="radioOne">
-                <StyledInput
-                  type="radio"
-                  id="radioOne1"
-                  name="radioOne"
-                  btnColor="#F7E5DC"
-                  onClick={exciteOneSubmit}
-                />
-                <SpanDom>
-                  <Span>#철학</Span>
-                </SpanDom>
-              </StyledLabel>
-              {/* 경제 */}
-              <StyledLabel htmlFor="radioOne2" name="radioOne">
-                <StyledInput
-                  type="radio"
-                  id="radioOne2"
-                  name="radioOne"
-                  btnColor="#DDEBF8"
-                  onClick={exciteOneSubmit}
-                />
-                <SpanDom>
-                  <Span>#경제</Span>
-                </SpanDom>
-              </StyledLabel>
-              {/* 운동 */}
-              <StyledLabel htmlFor="radioOne3" name="radioOne">
-                <StyledInput
-                  type="radio"
-                  id="radioOne3"
-                  name="radioOne"
-                  btnColor="#DAF8D0"
-                  onClick={exciteOneSubmit}
-                />
-                <SpanDom>
-                  <Span>#운동</Span>
-                </SpanDom>
-              </StyledLabel>
-            </ExciteBox>
+            <AInput
+              placeholder="관심사를 입력해주세요 ex) 철학, 경제, 운동"
+              ref={exciteOneRef}
+            />
           </BoxStyle>
           <BoxStyle>
             <Dom>
               관심사2<Red>*</Red>
             </Dom>
-            <ExciteBox>
-              <StyledLabel htmlFor="radioTwo1" name="radioTwo">
-                <StyledInput
-                  type="radio"
-                  id="radioTwo1"
-                  name="radioTwo"
-                  btnColor="#F7E5DC"
-                  onClick={exciteTwoSubmit}
-                />
-                <SpanDom>
-                  <Span>#철학</Span>
-                </SpanDom>
-              </StyledLabel>
-              {/* 경제 */}
-              <StyledLabel htmlFor="radioTwo2" name="radioTwo">
-                <StyledInput
-                  type="radio"
-                  id="radioTwo2"
-                  name="radioTwo"
-                  btnColor="#DDEBF8"
-                  onClick={exciteTwoSubmit}
-                />
-                <SpanDom>
-                  <Span>#경제</Span>
-                </SpanDom>
-              </StyledLabel>
-              {/* 운동 */}
-              <StyledLabel htmlFor="radioTwo3" name="radioTwo">
-                <StyledInput
-                  type="radio"
-                  id="radioTwo3"
-                  name="radioTwo"
-                  btnColor="#DAF8D0"
-                  onClick={exciteTwoSubmit}
-                />
-                <SpanDom>
-                  <Span>#운동</Span>
-                </SpanDom>
-              </StyledLabel>
-            </ExciteBox>
+            <AInput
+              placeholder="관심사를 입력해주세요 ex) 철학, 경제, 운동"
+              ref={exciteTwoRef}
+            />
           </BoxStyle>
           <BoxStyle>
             <Dom>메일인증</Dom>
@@ -250,11 +159,10 @@ const Info = () => {
                 placeholder="학교 이메일을 입력해주세요"
                 ref={emailRef}
               />
-              <MailButton>메일인증</MailButton>
+              {/* <MailButton onClick={mailSubmit}>메일인증</MailButton> */}
             </MailDom>
           </BoxStyle>
-          <DefaultButton>저장하기</DefaultButton>
-          {/* <DefaultButton onClick={onSubmit}>저장하기</DefaultButton> */}
+          <DefaultButton onClick={onSubmit}>저장하기</DefaultButton>
         </InfoDom>
       </Layout>
     </>
