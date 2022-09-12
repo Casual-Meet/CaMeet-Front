@@ -52,13 +52,14 @@ const MbtiDom = styled.div`
 `;
 
 const Info = () => {
-  const [mbti, setMbti] = useState();
+  const [mbti, setMbti] = useState("");
+  console.log(mbti);
 
-  const mbtiSubmit = (a) => {
-    console.log("good");
-    setMbti(a);
-    console.log(mbti);
-  };
+  // const mbtiSubmit = (a) => {
+  //   console.log("start");
+  //   setMbti(a);
+  //   console.log(mbti);
+  // };
 
   let navigate = useNavigate();
   const mailSubmit = () => {
@@ -128,7 +129,7 @@ const Info = () => {
                   color={mbti.color}
                   text={mbti.mbti}
                   key={mbti.id}
-                  onClick={() => mbtiSubmit(`${mbti.mbti}`)}
+                  onClick={() => setMbti(mbti.mbti)}
                 ></Mbti>
               ))}
             </MbtiDom>
