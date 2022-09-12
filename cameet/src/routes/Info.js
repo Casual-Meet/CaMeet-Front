@@ -6,7 +6,6 @@ import styled from "styled-components";
 import "../App.css";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import excite1 from "../images/excite1.png";
 
 const InfoDom = styled.div`
   font-size: 15pt;
@@ -54,28 +53,16 @@ const MailDom = styled.div`
 `;
 // 체크박스 스타일링
 const StyledLabel = styled.label`
-  // display: flex;
-  // align-items: center;
-  // user-select: none;
-  // cursor: pointer;
-  // width: 50px;
-  // height: 30px;
-  // border: 1px solid transparent;
-  // // background-color: ${(props) => props.btnColor || "white"};
-  // border-radius: 20px;
-  // cursor: pointer;
-  // font-size: 12pt;
-  // font-weight: 400;
-  // justify-content: center;
+  margin-right: 1vw;
 `;
 const StyledInput = styled.input`
   appearance: none;
-  width: 50px;
-  height: 30px;
+  width: 60px;
+  height: 35px;
 
   border: 1px solid transparent;
-  // background-color: ${(props) => props.btnColor || "white"};
-  background-image: ${(props) => props.btnImg || "#"};
+  background-color: ${(props) => props.btnColor || "white"};
+  // background-image: ${(props) => props.btnImg || "#"};
   border-radius: 20px;
   cursor: pointer;
   position: absolute;
@@ -87,6 +74,19 @@ const StyledInput = styled.input`
 const Span = styled.span`
   position: relative;
   z-index: 2;
+  font-size: 12pt;
+  font-weight: 400;
+  cursor: pointer;
+`;
+const SpanDom = styled.div`
+  text-align: center;
+  width: 65px;
+  height: 35px;
+  padding-top: 10px;
+`;
+const ExciteBox = styled.div`
+  display: flex;
+  margin-top: 7px;
 `;
 
 const Info = () => {
@@ -99,6 +99,7 @@ const Info = () => {
   };
   const exciteTwoSubmit = (excite) => {
     setExciteTwo(excite);
+    console.log("good");
   };
 
   let navigate = useNavigate();
@@ -156,34 +157,91 @@ const Info = () => {
             <Dom>
               관심사1<Red>*</Red>
             </Dom>
-
-            <StyledLabel htmlFor="radioOne1" name="radioOne">
-              <StyledInput
-                type="radio"
-                id="radioOne1"
-                name="radioOne"
-                // btnColor="pink"
-                btnImg={excite1}
-                onClick={exciteOneSubmit}
-              />
-              {/* <Span>#철학</Span> */}
-              {/* </StyledLabel>
-            <StyledLabel htmlFor="radioOne2" name="radioOne">
-              <StyledInput
-                type="radio"
-                id="radioOne2"
-                name="radioOne"
-                btnColor="skyblue"
-                onClick={exciteOneSubmit}
-              /> */}
-              {/* <Span>#경제</Span> */}
-            </StyledLabel>
+            <ExciteBox>
+              <StyledLabel htmlFor="radioOne1" name="radioOne">
+                <StyledInput
+                  type="radio"
+                  id="radioOne1"
+                  name="radioOne"
+                  btnColor="#F7E5DC"
+                  onClick={exciteOneSubmit}
+                />
+                <SpanDom>
+                  <Span>#철학</Span>
+                </SpanDom>
+              </StyledLabel>
+              {/* 경제 */}
+              <StyledLabel htmlFor="radioOne2" name="radioOne">
+                <StyledInput
+                  type="radio"
+                  id="radioOne2"
+                  name="radioOne"
+                  btnColor="#DDEBF8"
+                  onClick={exciteOneSubmit}
+                />
+                <SpanDom>
+                  <Span>#경제</Span>
+                </SpanDom>
+              </StyledLabel>
+              {/* 운동 */}
+              <StyledLabel htmlFor="radioOne3" name="radioOne">
+                <StyledInput
+                  type="radio"
+                  id="radioOne3"
+                  name="radioOne"
+                  btnColor="#DAF8D0"
+                  onClick={exciteOneSubmit}
+                />
+                <SpanDom>
+                  <Span>#운동</Span>
+                </SpanDom>
+              </StyledLabel>
+            </ExciteBox>
           </BoxStyle>
           <BoxStyle>
             <Dom>
               관심사2<Red>*</Red>
             </Dom>
-            <label></label>
+            <ExciteBox>
+              <StyledLabel htmlFor="radioTwo1" name="radioTwo">
+                <StyledInput
+                  type="radio"
+                  id="radioTwo1"
+                  name="radioTwo"
+                  btnColor="#F7E5DC"
+                  onClick={exciteTwoSubmit}
+                />
+                <SpanDom>
+                  <Span>#철학</Span>
+                </SpanDom>
+              </StyledLabel>
+              {/* 경제 */}
+              <StyledLabel htmlFor="radioTwo2" name="radioTwo">
+                <StyledInput
+                  type="radio"
+                  id="radioTwo2"
+                  name="radioTwo"
+                  btnColor="#DDEBF8"
+                  onClick={exciteTwoSubmit}
+                />
+                <SpanDom>
+                  <Span>#경제</Span>
+                </SpanDom>
+              </StyledLabel>
+              {/* 운동 */}
+              <StyledLabel htmlFor="radioTwo3" name="radioTwo">
+                <StyledInput
+                  type="radio"
+                  id="radioTwo3"
+                  name="radioTwo"
+                  btnColor="#DAF8D0"
+                  onClick={exciteTwoSubmit}
+                />
+                <SpanDom>
+                  <Span>#운동</Span>
+                </SpanDom>
+              </StyledLabel>
+            </ExciteBox>
           </BoxStyle>
           <BoxStyle>
             <Dom>메일인증</Dom>
