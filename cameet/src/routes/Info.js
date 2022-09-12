@@ -52,33 +52,24 @@ const MbtiDom = styled.div`
 `;
 
 const Info = () => {
-  const [mbti, setMbti] = useState("");
-  console.log(mbti);
-
-  // const mbtiSubmit = (a) => {
-  //   console.log("start");
-  //   setMbti(a);
-  //   console.log(mbti);
-  // };
+  const [mbtis, setMbtis] = useState("");
+  console.log(mbtis);
 
   let navigate = useNavigate();
-  const mailSubmit = () => {
-    axios.post(
-      "https://cameet.site/accounts/emailcheck",
-      { email: emailRef.current.value },
-      { "Content-Type": "application/json" }
-    );
-  };
+
   const onSubmit = () => {
+    console.log(mbtis);
     // axios
     //   .post(
     //     "backend-api",
     //     {
-    //       nickname: nicknameRef.current.value,
-    //       name: nameRef.current.value,
-    //       mbti: mbtiRef.current.value,
-    //       exciteOne: exciteOneRef.current.value,
-    //       exciteTwo: exciteTwoRef.current.value,
+    //
+    // user_nickname : nicknameRef.current.value,
+    // user_name : nameRef.current.value,
+    // user_mbti : mbti,
+    // user_keyword1 : exciteOneRef.current.value,
+    // user_keyword2 : exciteTwoRef.current.value,
+    // user_auth_email : emailRef.current.value
     //     },
     //     {
     //       "Content-Type": "application/json",
@@ -93,10 +84,15 @@ const Info = () => {
 
   const nicknameRef = useRef(null);
   const nameRef = useRef(null);
-  // const mbtiRef = useRef(null);
   const exciteOneRef = useRef(null);
   const exciteTwoRef = useRef(null);
   const emailRef = useRef(null);
+
+  const mbtiClick = (id, mbti) => {
+    console.log("start");
+    setMbtis(mbti);
+    console.log(mbtis);
+  };
 
   return (
     <>
@@ -120,7 +116,6 @@ const Info = () => {
             <Dom>
               MBTI<Red>*</Red>
             </Dom>
-            {/* <Input placeholder="MBTI를 입력해주세요" ref={mbtiRef} /> */}
 
             <MbtiDom>
               {data.mbtis.map((mbti) => (
@@ -129,7 +124,7 @@ const Info = () => {
                   color={mbti.color}
                   text={mbti.mbti}
                   key={mbti.id}
-                  onClick={() => setMbti(mbti.mbti)}
+                  onClick={() => mbtiClick(mbti.id, mbti.mbti)}
                 ></Mbti>
               ))}
             </MbtiDom>
