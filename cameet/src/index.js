@@ -100,7 +100,7 @@ a:visited{
 const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <QueryClientProvider client={queryClient}>
         <GlobalStyle />
         <App />
