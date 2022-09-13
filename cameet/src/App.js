@@ -7,6 +7,7 @@ import MyPage from "./routes/MyPage";
 import RoomCreate from "./routes/RoomCreate";
 import RoomDetail from "./routes/RoomDetail";
 import { Routes, Route } from "react-router-dom";
+import FirstInfo from "./routes/FirstInfo";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/roomcreate" element={<RoomCreate />} />
         <Route path="/roomdetail/:id" element={<RoomDetail />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/firstinfo" element={<FirstInfo />} />
       </Routes>
     </>
   );
