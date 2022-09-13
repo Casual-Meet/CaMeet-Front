@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import logoImg from "../../images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
 import { COLOR } from "../../utils/colors";
+import Slider from "react-slider-modal";
+import Info from "../../routes/Info";
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,13 +23,15 @@ const MypageIcon = styled(FontAwesomeIcon)`
   margin-right: 20px;
   color: ${COLOR.black};
 `;
-const Info = styled(Link)``;
+
 const InfoIcon = styled(FontAwesomeIcon)`
   font-size: 20px;
   color: ${COLOR.black};
 `;
 
 function Nav() {
+  const [slideShow, setSlideShow] = useState(false);
+
   return (
     <Wrapper>
       <Logo to={"/"}>
@@ -36,9 +41,28 @@ function Nav() {
         <Mypage to={"/mypage"}>
           <MypageIcon icon={faUser} />
         </Mypage>
-        <Info to={"/info"}>
-          <InfoIcon icon={faBars} />
-        </Info>
+
+        <InfoIcon
+          icon={faBars}
+          onClick={() => {
+            setSlideShow(!slideShow);
+          }}
+        />
+        <Slider
+          id="demoID2"
+          animation="fade"
+          speed="fast"
+          closeIcon={(e) => {
+            setSlideShow(e);
+          }}
+          toggle={slideShow}
+          sliderStyle={{ width: "80%", height: "100%", top: "0px" }}
+          closeModal={() => {
+            setSlideShow(false);
+          }}
+          direction="right"
+          render={<Info />}
+        />
       </div>
     </Wrapper>
   );
