@@ -1,0 +1,22 @@
+{
+    "mbtis":[
+        {"id":1, "color": "#F7E5DC", "mbti":"ISTJ"},
+        {"id":2, "color":"#DDEBF8", "mbti":"ISFJ"},
+        {"id":3, "color":"#DAF8D0", "mbti":"INFJ"},
+        {"id":4, "color":"#F7ECCE", "mbti":"INTJ"},
+        {"id":5, "color": "#F7E5DC", "mbti":"ISTP"},
+        {"id":6, "color":"#DDEBF8", "mbti":"ISFP"},
+        {"id":7, "color":"#DAF8D0", "mbti":"INFP"},
+        {"id":8, "color":"#F7ECCE", "mbti":"INTP"},
+        {"id":9,"color": "#F7E5DC", "mbti":"ESTP"},
+        {"id":10, "color":"#DDEBF8", "mbti":"ESFP"},
+        {"id":11, "color":"#DAF8D0", "mbti":"ENFP"},
+        {"id":12,  "color":"#F7ECCE", "mbti":"ENTP"},
+        {"id":13,"color": "#F7E5DC", "mbti":"ESTJ"},
+        {"id":14, "color":"#DDEBF8", "mbti":"ESFJ"},
+        {"id":15,  "color":"#DAF8D0", "mbti":"ENFJ"},
+        {"id":16, "color":"#F7ECCE", "mbti":"ENTJ"}
+
+    ]
+}
+

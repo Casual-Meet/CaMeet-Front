@@ -21,7 +21,9 @@ export const DefaultButton = styled.button`
   font-weight: 450;
   text-align: center;
   text-decoration: none;
-  border-radius: 40px;
+  // border-radius: 40px;
+  border-radius: 15px;
+
   color: ${COLOR.white};
   background-color: ${COLOR.mainColor};
   cursor: pointer;
@@ -32,12 +34,14 @@ export const DefaultButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 25px 0px;
 `;
 
 //기본 레이아웃
 export const Layout = styled.div`
   margin: 2vw auto;
   max-width: 85%;
+  overflow: scroll;
 `;
 
 //input 받을 때 형식

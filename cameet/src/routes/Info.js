@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Title, SubTitle, Layout } from "../utils/styles";
@@ -33,6 +32,7 @@ const Info = () => {
         {/* {loading ? (
           <Loader>loading</Loader>
         ):()} */}
+
     </>
   );
 };
