@@ -7,6 +7,13 @@ import { Layout } from "../utils/styles";
 import { COLOR } from "../utils/colors";
 import { GoogleLogin } from "react-google-login";
 import axios from "axios";
+import {
+  SOCIAL_AUTH_GOOGLE_CLIENT_ID,
+  SOCIAL_AUTH_GOOGLE_SECRET,
+  scope,
+  API_BASE_URL,
+  OAUTH2_REDIRECT_URI,
+} from "../db/secret";
 
 const Dom = styled.div`
   text-align: center;
@@ -34,16 +41,6 @@ const ContentDom = styled.div`
   top: 25%;
 `;
 const LoginPage = () => {
-  const SOCIAL_AUTH_GOOGLE_CLIENT_ID =
-    "563502599307-5bpei0i0bj03mqg8u5l975vqsijuj2c7.apps.googleusercontent.com";
-  const SOCIAL_AUTH_GOOGLE_SECRET = "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";
-  // const STATE = "STATE";
-  const scope = "https://www.googleapis.com/auth/userinfo.email";
-
-  const API_BASE_URL = "https://cameet.site";
-
-  const OAUTH2_REDIRECT_URI = "http://localhost:3000/";
-
   const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${SOCIAL_AUTH_GOOGLE_CLIENT_ID}&response_type=code&redirect_uri=${OAUTH2_REDIRECT_URI}&scope=${scope}`;
   console.log(GOOGLE_AUTH_URL);
 
