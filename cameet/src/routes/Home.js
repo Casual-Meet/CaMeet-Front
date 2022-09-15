@@ -10,6 +10,8 @@ import { getDays } from "../functions/getDays";
 import RoomByDate from "../components/home/RoomByDate";
 import isToday from "../functions/isToday";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import QueryString from "qs";
 
 function Home() {
   const { data, isLoading } = useQuery(["homedata"], getHomeData);
@@ -23,6 +25,21 @@ function Home() {
   }, []);
   console.log(data);
   // 2주일치 날짜 데이터 받아오기
+
+  let code = new URL(window.location.href).searchParams.get("code");
+  console.log(code);
+  // const {search} = useLocation();
+  // const code = QueryString.parse(search, {ignoreQueryPrefix: true}).code    // querystring ?code= 이하값 끄집어냄
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://cameet.site/accounts/google/callback/", // params로 code 서버에 전달
+        { params: { code: code } }
+      )
+      .then((res) => {});
+  }, [code]);
+
   return (
     <>
       <Nav />
