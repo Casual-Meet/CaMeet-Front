@@ -5,6 +5,7 @@ import googleLogin from "../images/googlelogin.png";
 import styled from "styled-components";
 import { Layout } from "../utils/styles";
 import { COLOR } from "../utils/colors";
+import { GoogleLogin } from "react-google-login";
 
 const Dom = styled.div`
   text-align: center;
@@ -32,6 +33,7 @@ const ContentDom = styled.div`
   top: 25%;
 `;
 const LoginPage = () => {
+  const googleClick = () => {};
   return (
     <Layout>
       <ContentDom>
@@ -42,8 +44,9 @@ const LoginPage = () => {
         </LogoDom>
 
         <Dom>
-          <Google src={googleLogin} alt="#" />
+          <Google src={googleLogin} alt="#" onClick={googleClick} />
         </Dom>
+
         <Dom>
           <KaKao src={kakaoLogin} alt="#" />
         </Dom>
