@@ -7,6 +7,7 @@ import Nav from "../components/common/Nav";
 import Terms from "../components/common/Terms";
 import { getDays } from "../functions/getDays";
 import getMonthandDate from "../functions/getMonthandDate";
+import { COLOR } from "../utils/colors";
 const RoomDetail = () => {
   const { id } = useParams();
   const { data, isLoading } = useQuery(["detail", id], () => getRoomDetail(id));
@@ -30,6 +31,11 @@ const RoomDetail = () => {
       </div>
       <hr></hr>
       <Terms></Terms>
+      <Footer>
+        <DateCont>{data && getMonthandDate(data.room_date)}</DateCont>
+        <DateCont>{data?.room_time.substr(0, 5)}</DateCont>
+        <div>#{data?.room_interest}</div>
+      </Footer>
     </>
   );
 };
@@ -43,5 +49,13 @@ const DateCont = styled.div`
 `;
 const SectionFooter = styled.div`
   display: flex;
+`;
+const Footer = styled.div`
+  background-color: ${COLOR.yellow};
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  font-size: 20px;
 `;
 export default RoomDetail;
