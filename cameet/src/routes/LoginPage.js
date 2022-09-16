@@ -16,6 +16,14 @@ import axios from "axios";
 import { useRecoilState } from "recoil";
 import { session } from "../atoms/session";
 
+import {
+  SOCIAL_AUTH_GOOGLE_CLIENT_ID,
+  SOCIAL_AUTH_GOOGLE_SECRET,
+  scope,
+  API_BASE_URL,
+  OAUTH2_REDIRECT_URI,
+} from "../db/secret";
+
 const Dom = styled.div`
   text-align: center;
 `;
