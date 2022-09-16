@@ -10,6 +10,8 @@ import { getDays } from "../functions/getDays";
 import RoomByDate from "../components/home/RoomByDate";
 import isToday from "../functions/isToday";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import QueryString from "qs";
 
 function Home() {
   const { data, isLoading } = useQuery(["homedata"], getHomeData);
@@ -23,6 +25,7 @@ function Home() {
   }, []);
   console.log(data);
   // 2주일치 날짜 데이터 받아오기
+
   return (
     <>
       <Nav />

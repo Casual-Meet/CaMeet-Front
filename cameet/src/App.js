@@ -7,10 +7,12 @@ import MyPage from "./routes/MyPage";
 import RoomCreate from "./routes/RoomCreate";
 import RoomDetail from "./routes/RoomDetail";
 import { Routes, Route } from "react-router-dom";
+import FirstInfo from "./routes/FirstInfo";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
-    <>
+    <RecoilRoot>
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/mypage" element={<MyPage />} />
@@ -18,8 +20,9 @@ function App() {
         <Route path="/roomcreate" element={<RoomCreate />} />
         <Route path="/roomdetail/:id" element={<RoomDetail />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/firstinfo" element={<FirstInfo />} />
       </Routes>
-    </>
+    </RecoilRoot>
   );
 }
 

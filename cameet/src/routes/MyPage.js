@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { Title, SubTitle, DefaultButton, Layout } from "../utils/styles";
 import Nav from "../components/common/Nav";
-import mypageAPI from "../api/mypageAPI";
+// import mypageAPI from "../api/mypageAPI";
 import imageInput from "../components/mypage/imageInput";
 import styled from "styled-components";
 import axios from "axios";
@@ -45,7 +45,7 @@ const MyPage = () => {
           <SubTitle>관심사</SubTitle>
           <SubTitle>전화번호</SubTitle>
           <SubTitle>MBTI</SubTitle>
-        </SubContainer>   
+        </SubContainer>
       </Layout>
     </>
   );
