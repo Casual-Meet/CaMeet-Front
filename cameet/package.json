@@ -38,7 +38,7 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://Casual-Meet.github.io/CaMeet-Front/",
+  "homepage": "https://Casual-Meet.github.io/",
   "eslintConfig": {
     "extends": [
       "react-app",

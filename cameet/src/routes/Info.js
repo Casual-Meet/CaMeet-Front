@@ -3,14 +3,12 @@ import axios from "axios";
 import { Title, SubTitle, Layout } from "../utils/styles";
 import "animate.css/animate.min.css";
 import styled from "styled-components";
-
+import { useRecoilValue } from "recoil";
 const InfoWrapper = styled.div`
   margin: 2vw 2vw;
 `;
 
-const Loader = styled.div`
-
-`;
+const Loader = styled.div``;
 
 const Info = () => {
   const [makeRoom, setMakeRoom] = useState([]);
@@ -27,12 +25,11 @@ const Info = () => {
   }, []);
   console.log(makeRoom);
   return (
-      <>
-        <Title>내 정보</Title>
-        {/* {loading ? (
+    <>
+      <Title>내 정보</Title>
+      {/* {loading ? (
           <Loader>loading</Loader>
         ):()} */}
-
     </>
   );
 };
