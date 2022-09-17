@@ -12,18 +12,21 @@ import isToday from "../functions/isToday";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import QueryString from "qs";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { session } from "../atoms/session";
 
 function Home() {
   const { data, isLoading } = useQuery(["homedata"], getHomeData);
   const [dates, setDates] = useState([]);
   // recoil 사용 고민
   const [selectedDate, setSelectedDate] = useState("");
+  const user = useRecoilValue(session);
+  console.log(user);
   useEffect(() => {
     const dates = getDates();
     dates.forEach((day) => (isToday(day) ? setSelectedDate(day) : null));
     setDates(dates);
   }, []);
-  console.log(data);
   // 2주일치 날짜 데이터 받아오기
 
   return (

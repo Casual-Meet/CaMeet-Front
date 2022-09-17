@@ -15,6 +15,7 @@ import {
 import axios from "axios";
 import { useRecoilState } from "recoil";
 import { session } from "../atoms/session";
+import { useNavigate } from "react-router";
 const Dom = styled.div`
   text-align: center;
 `;
@@ -41,6 +42,7 @@ const ContentDom = styled.div`
   top: 25%;
 `;
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [sessionData, setSessionData] = useRecoilState(session);
   let code = new URL(window.location.href).searchParams.get("code");
   useEffect(() => {
@@ -50,7 +52,7 @@ const LoginPage = () => {
       })
       .then((res) => {
         setSessionData(res.data);
-        window.location.href = "/firstinfo";
+        navigate("/firstinfo");
       });
   }, [code]);
   // const STATE = "STATE";

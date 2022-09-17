@@ -8,6 +8,8 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import { Mbti } from "../utils/mbti";
 import data from "../db/mbti.json";
+import { useRecoilValue } from "recoil";
+import { session } from "../atoms/session";
 
 const InfoDom = styled.div`
   font-size: 15pt;
@@ -52,6 +54,8 @@ const MbtiDom = styled.div`
 `;
 
 const FirstInfo = () => {
+  const user = useRecoilValue(session);
+  console.log(user);
   const [mbtis, setMbtis] = useState("");
   console.log(mbtis);
 

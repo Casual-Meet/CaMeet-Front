@@ -7,7 +7,8 @@ import { faBars, faUser } from "@fortawesome/free-solid-svg-icons";
 import { COLOR } from "../../utils/colors";
 import Slider from "react-slider-modal";
 import Info from "../../routes/Info";
-
+import { useRecoilValue } from "recoil";
+import { session } from "../../atoms/session";
 
 const Wrapper = styled.div`
   display: flex;
@@ -31,14 +32,16 @@ const InfoIcon = styled(FontAwesomeIcon)`
 
 function Nav() {
   const [slideShow, setSlideShow] = useState(false);
-
+  const user = useRecoilValue(session);
+  let mypage;
+  user.access_token === "" ? (mypage = "/login") : (mypage = "/mypage");
   return (
     <Wrapper>
       <Logo to={"/"}>
         <img src={logoImg} alt="캐밋" />
       </Logo>
       <div>
-        <Mypage to={"/mypage"}>
+        <Mypage to={mypage}>
           <MypageIcon icon={faUser} />
         </Mypage>
 
