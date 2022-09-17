@@ -4,6 +4,7 @@ import { Title, SubTitle, Layout } from "../utils/styles";
 import "animate.css/animate.min.css";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
+
 const InfoWrapper = styled.div`
   margin: 2vw 2vw;
 `;
@@ -27,9 +28,6 @@ const Info = () => {
   return (
     <>
       <Title>내 정보</Title>
-      {/* {loading ? (
-          <Loader>loading</Loader>
-        ):()} */}
     </>
   );
 };
