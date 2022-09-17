@@ -78,15 +78,33 @@ function Home() {
               </>
             ))}
       </Container>
+      <Link to={"/roomcreate"}>
+        <RoomCreateButton>+</RoomCreateButton>
+      </Link>
     </>
   );
 }
+const RoomCreateButton = styled.button`
+  background-color: ${COLOR.mainColor};
+  color: ${COLOR.white};
+  height: 80px;
+  width: 80px;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border-style: none;
+  border-radius: 100%;
+  font-size: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const Notice = styled.div`
   background-image: url(${infoSlide});
   background-size: cover;
   width: 100%;
-  height: 0;
-  padding-top: 50%;
+  height: 150px;
+  border-radius: 25px;
   position: relative;
   p {
     color: ${COLOR.white};

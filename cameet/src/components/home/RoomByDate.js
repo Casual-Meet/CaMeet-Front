@@ -28,6 +28,7 @@ const RoomContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 75px;
 `;
 const Time = styled.div`
   font-size: 20px;
@@ -41,7 +42,6 @@ const Title = styled.div`
   font-size: 15px;
   font-weight: bold;
   padding: 10px;
-  margin-bottom: 15px;
 `;
 const Interest = styled.div`
   font-size: 14px;
