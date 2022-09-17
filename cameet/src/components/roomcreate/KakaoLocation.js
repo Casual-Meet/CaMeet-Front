@@ -9,7 +9,8 @@ const MapContainer = styled.div`
 
 const { kakao } = window;
 
-const KakaoLocation = ({searchPlace}) => {
+const KakaoLocation = ({ searchPlace }) => {
+  console.log(searchPlace);
   useEffect(() => {
     // 마커를 클릭하면 장소명을 표출할 인포윈도우
     const infoWindow = new kakao.maps.InfoWindow({ zIndex: 1 });
@@ -49,7 +50,6 @@ const KakaoLocation = ({searchPlace}) => {
       var marker = new kakao.maps.Marker({
         map: map,
         position: locPosition,
-
       });
 
       var iwContent = message, // 인포윈도우에 표시할 내용
@@ -70,8 +70,6 @@ const KakaoLocation = ({searchPlace}) => {
     //키워드 검색-----------
     //장소 검색 객체 생성
     const ps = new kakao.maps.services.Places();
-    //키워드로 장소 검색
-    ps.keywordSearch({searchPlace}, placesSearchCB);
 
     //키워드 검색 완료 시 호출되는 콜백함수
     const placesSearchCB = (data, status, pagination) => {
@@ -89,6 +87,9 @@ const KakaoLocation = ({searchPlace}) => {
         map.setBounds(bounds);
       }
     };
+    //키워드로 장소 검색
+    ps.keywordSearch(searchPlace, placesSearchCB);
+
     //지도에 마커 표시하는 함수
     const displayMarker = (place, locPosition, message) => {
       const iwContent = message, // 인포윈도우에 표시할 내용
@@ -117,13 +118,12 @@ const KakaoLocation = ({searchPlace}) => {
         infowindow.open(map, marker);
       });
     };
-
-    return (
-      <>
-        <MapContainer id="map"></MapContainer>
-      </>
-    );
-  }, []);
+  }, [searchPlace]);
+  return (
+    <>
+      <MapContainer id="map"></MapContainer>
+    </>
+  );
 };
 
 export default KakaoLocation;
