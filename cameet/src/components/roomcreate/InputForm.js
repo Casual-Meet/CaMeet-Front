@@ -7,7 +7,6 @@ const InputForm = () => {
   const [place, setPlace] = useState("");
 
   const onChangeInputText = useCallback((e) => {
-    setInputText(e.target.value);
   }, []);
 
   //카카오맵 api 검색
