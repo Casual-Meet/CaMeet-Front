@@ -41,7 +41,7 @@ export const DefaultButton = styled.button`
 export const Layout = styled.div`
   margin: 2vw auto;
   max-width: 85%;
-  overflow: scroll;
+  overflow: hidden;
 `;
 
 //input 받을 때 형식
