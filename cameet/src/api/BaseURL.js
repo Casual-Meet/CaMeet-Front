@@ -1,1 +1,1 @@
-export const BASE_URL = "https://cameet.site/";
+export const BASE_URL = "https://cameet.site";

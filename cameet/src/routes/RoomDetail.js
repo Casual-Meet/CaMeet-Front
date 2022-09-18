@@ -1,8 +1,9 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import getRoomDetail from "../api/getRoomDetail";
+import postRoomDetail from "../api/postRoomDetail";
 import Nav from "../components/common/Nav";
 import Terms from "../components/common/Terms";
 import Kakaomap from "../components/roomdetail/Kakaomap";
@@ -14,7 +15,11 @@ const RoomDetail = () => {
   const { id } = useParams();
   const { data, isLoading } = useQuery(["detail", id], () => getRoomDetail(id));
   const day = data && getDays(data.room_date);
-  console.log(data);
+  const user_id = 1;
+  // 임시로 1 부여
+  const { mutate, isLoaing } = useMutation(() =>
+    postRoomDetail(parseInt(id), user_id)
+  );
   return (
     <>
       <Nav />
@@ -48,7 +53,7 @@ const RoomDetail = () => {
           <div>#{data?.room_interest}</div>
         </Left>
         <Right>
-          <JoinButton>참여하기</JoinButton>
+          <JoinButton onClick={() => mutate(id, user_id)}>참여하기</JoinButton>
         </Right>
       </Footer>
     </>
