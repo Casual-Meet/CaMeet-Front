@@ -4,8 +4,16 @@ import { Title, SubTitle, DefaultButton, Layout, Input } from "../utils/styles";
 import Terms from "../components/common/Terms";
 import axios from "axios";
 import InputForm from "../components/roomcreate/InputForm";
+import { useMutation } from "react-query";
+import postRoomData from "../api/postRoomData";
 
 const RoomCreate = () => {
+  const { mutate, isLoading, isError, error, isSuccess } =
+    useMutation(postRoomData);
+  
+  // useMutation의 리턴값을 출력
+  console.log(`isLoaing : ${isLoading}, isError : ${isError}, error : ${error}, isSuccess : ${isSuccess}`);
+
   const [roomTitle, setRoomTitle] = useState("");
   const [roomInterest, setRoomInterest] = useState("");
   const [roomdate, setRoomDate] = useState("");
@@ -78,7 +86,7 @@ const RoomCreate = () => {
         <InputForm />
         <SubTitle>모임 정원</SubTitle>
         <Terms />
-        <DefaultButton type="submit" disabled={disabled}>
+        <DefaultButton onClick={mutate} disabled={disabled}>
           생성하기
         </DefaultButton>
       </Layout>

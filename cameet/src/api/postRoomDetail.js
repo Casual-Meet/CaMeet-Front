@@ -1,13 +1,12 @@
 import axios from "axios";
 import { BASE_URL } from "./BaseURL";
 
-export default function postRoomDetail(roomid, user_id) {
-  console.log(roomid, user_id);
-  console.log(`${BASE_URL}/roomdetail/${roomid}`);
+export default function postRoomDetail(room_id) {
+  console.log(room_id);
+  console.log(`${BASE_URL}/roomdetail/${room_id}`);
   return axios
-    .post(`${BASE_URL}/roomdetail/${roomid}`, {
-      room_id: roomid,
-      user_id: user_id,
+    .post(`${BASE_URL}/roomcreate/${room_id}`, {
+      room_id: roomid
     })
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
