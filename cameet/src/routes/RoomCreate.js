@@ -3,7 +3,6 @@ import Nav from "../components/common/Nav";
 import { Title, SubTitle, DefaultButton, Layout, Input } from "../utils/styles";
 import Terms from "../components/common/Terms";
 import axios from "axios";
-// import KakaoLocation from "../components/roomcreate/KakaoLocation";
 import InputForm from "../components/roomcreate/InputForm";
 
 const RoomCreate = () => {
