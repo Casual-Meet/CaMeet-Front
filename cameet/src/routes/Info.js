@@ -4,6 +4,8 @@ import { Title, SubTitle, Layout } from "../utils/styles";
 import "animate.css/animate.min.css";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
+import { useQuery } from "react-query";
+import getUserInfo from "../api/getUserInfo";
 
 const InfoWrapper = styled.div`
   margin: 2vw 2vw;

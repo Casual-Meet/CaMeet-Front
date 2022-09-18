@@ -1,9 +1,11 @@
 import React from "react";
 import { useMutation, useQuery } from "react-query";
 import { useParams } from "react-router";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import getRoomDetail from "../api/getRoomDetail";
 import postRoomDetail from "../api/postRoomDetail";
+import { session } from "../atoms/session";
 import Nav from "../components/common/Nav";
 import Terms from "../components/common/Terms";
 import Kakaomap from "../components/roomdetail/Kakaomap";
@@ -15,10 +17,11 @@ const RoomDetail = () => {
   const { id } = useParams();
   const { data, isLoading } = useQuery(["detail", id], () => getRoomDetail(id));
   const day = data && getDays(data.room_date);
-  const user_id = 1;
+  const user_id = 9;
+  const { access_token } = useRecoilValue(session);
   // 임시로 1 부여
-  const { mutate, isLoaing } = useMutation(() =>
-    postRoomDetail(parseInt(id), user_id)
+  const { mutate } = useMutation(() =>
+    postRoomDetail(access_token, parseInt(id), user_id)
   );
   return (
     <>
