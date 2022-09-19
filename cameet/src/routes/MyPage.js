@@ -17,18 +17,18 @@ const SubContainer = styled.div`
 `;
 const SmallTitle = styled.p`
   font-size: 1rem;
-  margin: 15px 0px;
+  margin: 15.8px 0px;
 `;
 
 const Input = styled.input`
-  margin: 15px 0px;
+  margin: 12.5px 0px;
   font-size: 1rem;
   color: ${COLOR.grey};
 
-  // border: 1px solid transparent;
-  // :focus {
-  //   outline: none;
-  // }
+  border: 1px solid transparent;
+  :focus {
+    outline: none;
+  }
 `;
 const TextDom = styled.div`
   width: 30%;
@@ -47,21 +47,38 @@ const EmailDom = styled.div`
 `;
 const EmailInput = styled.input`
   width: 70%;
-  margin: 15px 0px;
+  margin: 12.5px 0px;
   font-size: 1rem;
-  color: ${COLOR.grey};
-
-  // border: 1px solid transparent;
-  // :focus {
-  //   outline: none;
-  // }
+  color: #4c4c4c;
+  border: 1px solid transparent;
+  :focus {
+    outline: none;
+  }
 `;
 const EmailButton = styled.button`
   width: 30%;
-  background-color: ${COLOR.mainColor};
+  font-size: 1rem;
+  background-color: #07ca4a;
   border-radius: 15px;
   border: 1px solid transparent;
   color: white;
+  height: 1.5rem;
+  margin: 15px 0px;
+  cursor: pointer;
+`;
+const MbtiInput = styled.input`
+  width: 16%;
+  margin: 10px 0px 2px 0px;
+  padding-left: 10px;
+  font-size: 1rem;
+  color: #4c4c4c;
+  background-color: #f7e5dc;
+  border-radius: 20px;
+  height: 1.8rem;
+  border: 1px solid transparent;
+  :focus {
+    outline: none;
+  }
 `;
 
 const MyPage = () => {
@@ -153,18 +170,22 @@ const MyPage = () => {
               defaultValue={userInfo.user_keyword2}
               ref={exciteTwoRef}
             />
-            <Input
+
+            <MbtiInput
               type="text"
               defaultValue={userInfo.user_mbti}
               ref={mbtiRef}
             />
+
             <EmailDom>
               <EmailInput
                 type="text"
                 defaultValue={userInfo.user_auth_email}
                 ref={emailRef}
               />
-              <button>학교인증</button>
+              <EmailButton onClick={() => alert("준비 중인 기능입니다")}>
+                학교인증
+              </EmailButton>
             </EmailDom>
           </InputDom>
         </SubContainer>
