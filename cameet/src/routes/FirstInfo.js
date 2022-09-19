@@ -8,8 +8,9 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import { Mbti } from "../utils/mbti";
 import data from "../db/mbti.json";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { session } from "../atoms/session";
+import { useMutation } from "react-query";
 
 const InfoDom = styled.div`
   font-size: 15pt;
@@ -55,35 +56,44 @@ const MbtiDom = styled.div`
 
 const FirstInfo = () => {
   const user = useRecoilValue(session);
-  console.log(user);
+  const token = user.access_token;
   const [mbtis, setMbtis] = useState("");
-  console.log(mbtis);
 
+  console.log(user.access_token);
+  console.log(user.refresh_token);
   let navigate = useNavigate();
 
   const onSubmit = () => {
+    console.log(nicknameRef.current.value);
+    console.log(nameRef.current.value);
     console.log(mbtis);
-    // axios
-    //   .post(
-    //     "backend-api",
-    //     {
-    //
-    // user_nickname : nicknameRef.current.value,
-    // user_name : nameRef.current.value,
-    // user_mbti : mbti,
-    // user_keyword1 : exciteOneRef.current.value,
-    // user_keyword2 : exciteTwoRef.current.value,
-    // user_auth_email : emailRef.current.value
-    //     },
-    //     {
-    //       "Content-Type": "application/json",
-    //     }
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //     alert("추가완료!");
-    //     navigate("/");
-    //   });
+    console.log(exciteOneRef.current.value);
+    console.log(exciteTwoRef.current.value);
+    console.log(emailRef.current.value);
+
+    axios
+      .patch(
+        "https://cameet.site/accounts/mypage/",
+        {
+          user_nickname: nicknameRef.current.value,
+          user_name: nameRef.current.value,
+          user_mbti: mbtis,
+          user_keyword1: exciteOneRef.current.value,
+          user_keyword2: exciteTwoRef.current.value,
+          user_auth_email: emailRef.current.value,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          "Content-Type": "application/json",
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        alert("추가완료!");
+        navigate("/");
+      });
   };
 
   const nicknameRef = useRef(null);
@@ -94,8 +104,9 @@ const FirstInfo = () => {
 
   const mbtiClick = (id, mbti) => {
     console.log("start");
+    console.log(id);
     setMbtis(mbti);
-    console.log(mbtis);
+    // console.log(mbtis);
   };
 
   return (
@@ -128,7 +139,8 @@ const FirstInfo = () => {
                   color={mbti.color}
                   text={mbti.mbti}
                   key={mbti.id}
-                  onClick={() => mbtiClick(mbti.id, mbti.mbti)}
+                  // onClick={() => mbtiClick(mbti.id, mbti.mbti)}
+                  // onClick={() => console.log("oooooo")}
                 ></Mbti>
               ))}
             </MbtiDom>

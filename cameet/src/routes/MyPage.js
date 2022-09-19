@@ -21,12 +21,12 @@ const MyPage = () => {
     e.preventDefault();
     console.log("돼떠");
 
-    axios
-      .post("http://localhost:8000/accounts/mypage")
-      .then((res) => res.json())
-      .then((data) => {
-        setuserEmail(data.data.user_email);
-      });
+    // axios
+    //   .patch("https://cameet.site/accounts/mypage/")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setuserEmail(data.data.user_email);
+    //   });
   });
 
   return (
