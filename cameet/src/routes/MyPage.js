@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { session } from "../atoms/session";
 import { useNavigate } from "react-router";
+import logoPlus from "../images/imgplus.png";
 
 const SubContainer = styled.div`
   display: flex;
@@ -80,7 +81,52 @@ const MbtiInput = styled.input`
     outline: none;
   }
 `;
+const BackgroundDom = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const Background = styled.div`
+  width: 100px;
+  height: 100px;
 
+  margin-top: 2vh;
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  border-radius: 100px;
+`;
+const ShowImg = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  position: absolute;
+  z-index: 2;
+`;
+const Img = styled.label`
+  width: 100%;
+  height: 100px;
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  cursor: pointer;
+`;
+const PhotoInput = styled.input`
+  visibility: hidden;
+  width: 100%;
+`;
+const ImgIcon = styled.img`
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: 75px;
+  z-index: 3;
+  left: 30px;
+`;
 const MyPage = () => {
   const user = useRecoilValue(session);
   const token = user.access_token;
@@ -128,18 +174,48 @@ const MyPage = () => {
         navigate("/");
       });
   };
+  const profileRef = useRef(null);
   const nicknameRef = useRef(null);
   const nameRef = useRef(null);
   const exciteOneRef = useRef(null);
   const exciteTwoRef = useRef(null);
   const mbtiRef = useRef(null);
   const emailRef = useRef(null);
-
+  const [imageSrc, setImageSrc] = useState("");
+  const encodeFileToBase64 = (fileBlob) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBlob);
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setImageSrc(reader.result);
+        resolve();
+        document.querySelector("#background").style.display = "none";
+      };
+    });
+  };
   return (
     <>
       <Nav />
       <Layout>
         <Title>내 프로필</Title>
+        <BackgroundDom>
+          <Background id="background" />
+        </BackgroundDom>
+        <Img htmlFor="file">
+          <ImgIcon src={logoPlus} alt="#" />
+          {imageSrc && <ShowImg src={imageSrc} id="showimg" alt="#" />}
+        </Img>
+
+        <PhotoInput
+          type="file"
+          name="file"
+          id="file"
+          ref={profileRef}
+          onChange={(e) => {
+            encodeFileToBase64(e.target.files[0]);
+            console.log(e.target.files[0].name);
+          }}
+        />
         <SubContainer>
           <TextDom>
             <SmallTitle>이름</SmallTitle>
