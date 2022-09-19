@@ -36,15 +36,13 @@ const MyPage = () => {
         <Title>내 프로필</Title>
         <imageInput />
         <SubContainer>
-          <SubTitle>학교 이메일</SubTitle>
-          <SubTitle>이메일(ID)</SubTitle>
-          <SubTitle>비밀번호</SubTitle>
-          <SubTitle>전화번호</SubTitle>
           <SubTitle>이름</SubTitle>
           <SubTitle>닉네임</SubTitle>
-          <SubTitle>관심사</SubTitle>
-          <SubTitle>전화번호</SubTitle>
+          <SubTitle>관심사1</SubTitle>
+          <SubTitle>관심사1</SubTitle>
+
           <SubTitle>MBTI</SubTitle>
+          <SubTitle>학교 이메일</SubTitle>
         </SubContainer>
       </Layout>
     </>
