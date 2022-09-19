@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { Title, SubTitle, DefaultButton, Layout } from "../utils/styles";
+import { Title, DefaultButton, Layout } from "../utils/styles";
 import Nav from "../components/common/Nav";
 // import mypageAPI from "../api/mypageAPI";
 import imageInput from "../components/mypage/imageInput";
@@ -8,10 +8,35 @@ import axios from "axios";
 
 const SubContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: left;
   align-items: flex-start;
   text-align: left;
+`;
+const SmallTitle = styled.p`
+  font-size: 1rem;
+  margin: 15.8px 0px;
+`;
+
+const Input = styled.input`
+  margin: 13px 0px;
+
+  // border: 1px solid transparent;
+  // :focus {
+  //   outline: none;
+  // }
+`;
+const TextDom = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+`;
+const InputDom = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  color: ;
 `;
 
 const MyPage = () => {
@@ -36,14 +61,24 @@ const MyPage = () => {
         <Title>내 프로필</Title>
         <imageInput />
         <SubContainer>
-          <SubTitle>이름</SubTitle>
-          <SubTitle>닉네임</SubTitle>
-          <SubTitle>관심사1</SubTitle>
-          <SubTitle>관심사1</SubTitle>
-
-          <SubTitle>MBTI</SubTitle>
-          <SubTitle>학교 이메일</SubTitle>
+          <TextDom>
+            <SmallTitle>이름</SmallTitle>
+            <SmallTitle>닉네임</SmallTitle>
+            <SmallTitle>관심사1</SmallTitle>
+            <SmallTitle>관심사1</SmallTitle>
+            <SmallTitle>MBTI</SmallTitle>
+            <SmallTitle>학교 이메일</SmallTitle>
+          </TextDom>
+          <InputDom>
+            <Input type="text" />
+            <Input type="text" />
+            <Input type="text" />
+            <Input type="text" />
+            <Input type="text" />
+            <Input type="text" />
+          </InputDom>
         </SubContainer>
+        <DefaultButton>저장하기</DefaultButton>
       </Layout>
     </>
   );
