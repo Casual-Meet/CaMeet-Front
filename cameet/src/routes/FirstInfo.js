@@ -59,8 +59,8 @@ const FirstInfo = () => {
   const token = user.access_token;
   const [mbtis, setMbtis] = useState("");
 
-  console.log(user.access_token);
-  console.log(user.refresh_token);
+  // console.log(user.access_token);
+  // console.log(user.refresh_token);
   let navigate = useNavigate();
 
   const onSubmit = () => {
@@ -92,7 +92,7 @@ const FirstInfo = () => {
       .then((res) => {
         console.log(res);
         alert("추가완료!");
-        navigate("/");
+        navigate("/mypage");
       });
   };
 
