@@ -13,7 +13,7 @@ import Kakaomap from "../components/roomdetail/Kakaomap";
 import { getDays } from "../functions/getDays";
 import getMonthandDate from "../functions/getMonthandDate";
 import { COLOR } from "../utils/colors";
-import { DefaultButton, SubTitle, Title } from "../utils/styles";
+import { DefaultButton, Title } from "../utils/styles";
 const RoomDetail = () => {
   const [Join, setJoin] = useState(false);
   const navigate = useNavigate();
@@ -32,6 +32,7 @@ const RoomDetail = () => {
       },
     }
   );
+  console.log(data);
   const joinRoom = () => {
     if (access_token) {
       mutate();
@@ -52,7 +53,7 @@ const RoomDetail = () => {
           <DateCont>{data?.room_time.substr(0, 5)}</DateCont>
         </Time>
         <div>{data?.room_title}</div>
-        <div>호스트 : {}</div>
+        <div>호스트 : {data?.host.user_nickname}</div>
         <SectionFooter>
           <Interest>#{data?.room_interest}</Interest>
           <HeadCount>최대 인원 {data?.room_headcount}</HeadCount>

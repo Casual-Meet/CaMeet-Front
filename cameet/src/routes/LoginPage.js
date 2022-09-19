@@ -52,6 +52,8 @@ const LoginPage = () => {
       })
       .then((res) => {
         setSessionData(res.data);
+        window.localStorage.setItem("access_token", res.data.access_token);
+        window.localStorage.setItem("refresh_token", res.data.refresh_token);
         navigate("/firstinfo");
       });
   }, [code]);
