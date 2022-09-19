@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import getRoomDetail from "../api/getRoomDetail";
@@ -8,25 +8,44 @@ import postRoomDetail from "../api/postRoomDetail";
 import { session } from "../atoms/session";
 import Nav from "../components/common/Nav";
 import Terms from "../components/common/Terms";
+import JoinModal from "../components/roomdetail/JoinModal";
 import Kakaomap from "../components/roomdetail/Kakaomap";
 import { getDays } from "../functions/getDays";
 import getMonthandDate from "../functions/getMonthandDate";
 import { COLOR } from "../utils/colors";
 import { DefaultButton, SubTitle, Title } from "../utils/styles";
 const RoomDetail = () => {
+  const [Join, setJoin] = useState(false);
+  const navigate = useNavigate();
   const { id } = useParams();
-  const { data, isLoading } = useQuery(["detail", id], () => getRoomDetail(id));
+  const { data } = useQuery(["detail", id], () => getRoomDetail(id));
   const day = data && getDays(data.room_date);
-  const user_id = 9;
   const { access_token } = useRecoilValue(session);
-  // 임시로 1 부여
-  const { mutate } = useMutation(() =>
-    postRoomDetail(access_token, parseInt(id), user_id)
+  const { mutate } = useMutation(
+    () => postRoomDetail(access_token, parseInt(id)),
+    {
+      onSuccess: (data) => {
+        if (data.status === 200) {
+          console.log(data);
+          setJoin(true);
+        }
+      },
+    }
   );
+  const joinRoom = () => {
+    if (access_token) {
+      mutate();
+    } else {
+      navigate("/login");
+    }
+  };
+  // access_token없으면 login 페이지로 redirect
   return (
     <>
+      {Join ? <JoinModal setJoin={setJoin}></JoinModal> : null}
+      {/* setState를 props로 넘겨줬음 */}
       <Nav />
-      <div>
+      <RoomData>
         <Time>
           <DateCont>{data && getMonthandDate(data.room_date)}</DateCont>
           <DateCont>{day}요일</DateCont>
@@ -35,10 +54,10 @@ const RoomDetail = () => {
         <div>{data?.room_title}</div>
         <div>호스트 : {}</div>
         <SectionFooter>
-          <div>#{data?.room_interest}</div>
-          <div>최대 인원 {data?.room_headcount}</div>
+          <Interest>#{data?.room_interest}</Interest>
+          <HeadCount>최대 인원 {data?.room_headcount}</HeadCount>
         </SectionFooter>
-      </div>
+      </RoomData>
       <hr></hr>
       <Title>만남 장소</Title>
       <Kakaomap
@@ -56,12 +75,28 @@ const RoomDetail = () => {
           <div>#{data?.room_interest}</div>
         </Left>
         <Right>
-          <JoinButton onClick={() => mutate(id, user_id)}>참여하기</JoinButton>
+          <JoinButton onClick={joinRoom}>참여하기</JoinButton>
         </Right>
       </Footer>
     </>
   );
 };
+const HeadCount = styled.div`
+  color: gray;
+  font-weight: 600;
+`;
+const Interest = styled.div`
+  margin-right: 100px;
+  font-size: 20px;
+  font-weight: 600;
+`;
+const RoomData = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px;
+`;
 const Left = styled.div`
   flex-basis: 70%;
 `;
@@ -85,12 +120,15 @@ const Time = styled.div`
   display: flex;
   justify-content: flex-start;
   font-size: 20px;
+  margin-bottom: 10px;
 `;
 const DateCont = styled.div`
   margin-right: 10px;
 `;
 const SectionFooter = styled.div`
   display: flex;
+  align-items: center;
+  margin-top: 10px;
 `;
 const Footer = styled.div`
   display: flex;
