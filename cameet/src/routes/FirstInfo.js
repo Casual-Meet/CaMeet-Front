@@ -6,11 +6,10 @@ import styled from "styled-components";
 import "../App.css";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { Mbti } from "../utils/mbti";
+// import { Mbti } from "../utils/mbti";
 import data from "../db/mbti.json";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { session } from "../atoms/session";
-import { useMutation } from "react-query";
 
 const InfoDom = styled.div`
   font-size: 15pt;
@@ -53,11 +52,44 @@ const MbtiDom = styled.div`
   display: flex;
   overflow: scroll;
 `;
+const StyledLabel = styled.label`
+  margin-right: 1vw;
+`;
+const StyledInput = styled.input`
+  appearance: none;
+  width: 60px;
+  height: 35px;
+
+  border: 1px solid transparent;
+  background-color: ${(props) => props.btnColor || "white"};
+  // background-image: ${(props) => props.btnImg || "#"};
+  border-radius: 20px;
+  cursor: pointer;
+  //   position: absolute;
+  z-index: 1;
+  &:checked {
+    border: 2px solid ${COLOR.mainColor};
+  }
+`;
+const Span = styled.span`
+  position: relative;
+  z-index: 2;
+  font-size: 12pt;
+  font-weight: 400;
+  cursor: pointer;
+`;
+const SpanDom = styled.div`
+  text-align: center;
+  width: 65px;
+  margin: -32px 0px 0px 3px;
+`;
+const InputDom = styled.div``;
 
 const FirstInfo = () => {
   const user = useRecoilValue(session);
   const token = user.access_token;
   const [mbtis, setMbtis] = useState("");
+  const [sessionData, setSessionData] = useRecoilState(session);
 
   // console.log(user.access_token);
   // console.log(user.refresh_token);
@@ -90,9 +122,12 @@ const FirstInfo = () => {
         }
       )
       .then((res) => {
+        setSessionData(res.data);
+        window.localStorage.setItem("access_token", res.data.access_token);
+        window.localStorage.setItem("refresh_token", res.data.refresh_token);
         console.log(res);
         alert("추가완료!");
-        navigate("/mypage");
+        navigate("/");
       });
   };
 
@@ -101,13 +136,17 @@ const FirstInfo = () => {
   const exciteOneRef = useRef(null);
   const exciteTwoRef = useRef(null);
   const emailRef = useRef(null);
+  console.log(sessionData);
 
   const mbtiClick = (id, mbti) => {
     console.log("start");
     console.log(id);
     setMbtis(mbti);
-    // console.log(mbtis);
+    console.log(mbtis);
   };
+  // if(document.getElementById('gender_Male').checked) {
+  //   //Male radio button is checked
+  // }
 
   return (
     <>
@@ -134,14 +173,21 @@ const FirstInfo = () => {
 
             <MbtiDom>
               {data.mbtis.map((mbti) => (
-                <Mbti
-                  num={mbti.id}
-                  color={mbti.color}
-                  text={mbti.mbti}
-                  key={mbti.id}
-                  // onClick={() => mbtiClick(mbti.id, mbti.mbti)}
-                  // onClick={() => console.log("oooooo")}
-                ></Mbti>
+                <InputDom key={mbti.id}>
+                  <StyledInput
+                    type="radio"
+                    id={mbti.id}
+                    name="radio"
+                    btnColor={mbti.color}
+                  />
+                  <StyledLabel htmlFor={mbti.id} name="radio">
+                    <SpanDom>
+                      <Span onClick={() => mbtiClick(mbti.id, mbti.mbti)}>
+                        {mbti.mbti}
+                      </Span>
+                    </SpanDom>
+                  </StyledLabel>
+                </InputDom>
               ))}
             </MbtiDom>
           </BoxStyle>
