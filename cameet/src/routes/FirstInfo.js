@@ -10,7 +10,6 @@ import axios from "axios";
 import data from "../db/mbti.json";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { session } from "../atoms/session";
-import { useMutation } from "react-query";
 
 const InfoDom = styled.div`
   font-size: 15pt;
