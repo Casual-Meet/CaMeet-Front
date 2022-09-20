@@ -58,6 +58,7 @@ const FirstInfo = () => {
   const user = useRecoilValue(session);
   const token = user.access_token;
   const [mbtis, setMbtis] = useState("");
+  const [sessionData, setSessionData] = useRecoilState(session);
 
   // console.log(user.access_token);
   // console.log(user.refresh_token);
@@ -90,6 +91,9 @@ const FirstInfo = () => {
         }
       )
       .then((res) => {
+        setSessionData(res.data);
+        window.localStorage.setItem("access_token", res.data.access_token);
+        window.localStorage.setItem("refresh_token", res.data.refresh_token);
         console.log(res);
         alert("추가완료!");
         navigate("/mypage");
@@ -101,7 +105,7 @@ const FirstInfo = () => {
   const exciteOneRef = useRef(null);
   const exciteTwoRef = useRef(null);
   const emailRef = useRef(null);
-
+  console.log(sessionData);
   const mbtiClick = (id, mbti) => {
     console.log("start");
     console.log(id);

@@ -130,7 +130,7 @@ const ImgIcon = styled.img`
 const MyPage = () => {
   const user = useRecoilValue(session);
   const token = user.access_token;
-
+  const [sessionData, setSessionData] = useRecoilState(session);
   const [userInfo, setUserInfo] = useState([]);
 
   useEffect(() => {
@@ -141,13 +141,16 @@ const MyPage = () => {
         },
         "Content-Type": "application/json",
       })
-      .then((response) => {
-        console.log(response.data);
-        setUserInfo(response.data);
+      .then((res) => {
+        console.log(res.data);
+        setUserInfo(res.data);
+        setSessionData(res.data);
+        window.localStorage.setItem("access_token", res.data.access_token);
+        window.localStorage.setItem("refresh_token", res.data.refresh_token);
         console.log("success");
       });
   }, []);
-
+  console.log(sessionData);
   let navigate = useNavigate();
   const onSubmit = () => {
     axios
