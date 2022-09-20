@@ -6,7 +6,7 @@ import styled from "styled-components";
 import "../App.css";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { Mbti } from "../utils/mbti";
+// import { Mbti } from "../utils/mbti";
 import data from "../db/mbti.json";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { session } from "../atoms/session";
