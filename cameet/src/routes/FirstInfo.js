@@ -128,7 +128,7 @@ const FirstInfo = () => {
         window.localStorage.setItem("refresh_token", res.data.refresh_token);
         console.log(res);
         alert("추가완료!");
-        navigate("/mypage");
+        navigate("/");
       });
   };
 

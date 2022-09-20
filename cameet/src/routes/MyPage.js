@@ -99,12 +99,14 @@ const Background = styled.div`
   z-index: 1;
   border-radius: 100px;
 `;
+
 const ShowImg = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 100px;
   position: absolute;
   z-index: 2;
+  overflow: hidden;
 `;
 const Img = styled.label`
   width: 100%;
