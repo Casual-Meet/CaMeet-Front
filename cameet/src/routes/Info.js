@@ -29,7 +29,7 @@ const Info = () => {
   console.log(makeRoom);
   return (
     <>
-      <Title>내 정보</Title>
+      <Title>내 정보d</Title>
     </>
   );
 };
