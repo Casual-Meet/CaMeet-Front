@@ -34,7 +34,11 @@ function Nav() {
   const [slideShow, setSlideShow] = useState(false);
   const user = useRecoilValue(session);
   let mypage;
-  user.access_token === "" ? (mypage = "/login") : (mypage = "/mypage");
+  user.access_token === "" ||
+  user.access_token === undefined ||
+  user.access_token === "undefined"
+    ? (mypage = "/login")
+    : (mypage = "/mypage");
   return (
     <Wrapper>
       <Logo to={"/"}>

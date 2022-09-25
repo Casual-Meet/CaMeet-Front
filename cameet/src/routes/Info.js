@@ -26,7 +26,6 @@ const Info = () => {
       setLoading(false);
     })();
   }, []);
-  console.log(makeRoom);
   return (
     <>
       <Title>내 정보</Title>

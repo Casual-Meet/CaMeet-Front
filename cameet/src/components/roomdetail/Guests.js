@@ -1,13 +1,22 @@
 import React from "react";
-import { useState } from "react";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
+import { guestData } from "../../atoms/guestData";
 
-const Guests = ({ person }) => {
-  const [isClicked, setClicked] = useState(false);
+const Guests = ({ person, setGuestClick }) => {
+  const setGuestData = useSetRecoilState(guestData);
   return (
     <GuestContainer
       onClick={() => {
-        setClicked((prev) => !prev);
+        setGuestClick((prev) => !prev);
+        setGuestData({
+          apply_id: person.apply_id,
+          user_keyword1: person.user_keyword1,
+          user_keyword2: person.user_keyword2,
+          user_keyword3: person.user_keyword3,
+          user_mbti: person.user_mbti,
+          user_nickname: person.user_nickname,
+        });
       }}
     >
       <img src={require(`../../images/profile_tmp.png`)} alt=""></img>

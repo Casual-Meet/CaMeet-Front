@@ -1,19 +1,29 @@
 import styled from "styled-components";
 import React from "react";
 import { DefaultButton } from "../../utils/styles";
-import { useRecoilState } from "recoil";
-import { modal } from "../../atoms/modal";
+import { useRecoilValue } from "recoil";
+import { guestData } from "../../atoms/guestData";
 
-const GuestModal = () => {
-  const [isClicked, setClicked] = useRecoilState(modal);
+const GuestModal = ({ setGuestClick }) => {
+  const guest = useRecoilValue(guestData);
   return (
-    <ModalContainer onClick={setClicked((prev) => !prev)}>
+    <ModalContainer>
       <ModalInfo>
         <img src={require(`../../images/profile_tmp.png`)} alt=""></img>
-        <Name>철수</Name>
-        <Mbti>ENFJ</Mbti>
-        <UserKeyword>#경제</UserKeyword>
-        <DefaultButton onClick={setClicked((prev) => !prev)}>
+        <Name>{guest.user_nickname}</Name>
+        <Mbti>{guest.user_mbti}</Mbti>
+        <UserKeyWords>
+          {guest.user_keyword1 && (
+            <UserKeyWord>{guest.user_keyword1}</UserKeyWord>
+          )}
+          {guest.user_keyword2 && (
+            <UserKeyWord>{guest.user_keyword2}</UserKeyWord>
+          )}
+          {guest.user_keyword3 && (
+            <UserKeyWord>{guest.user_keyword3}</UserKeyWord>
+          )}
+        </UserKeyWords>
+        <DefaultButton onClick={() => setGuestClick((prev) => !prev)}>
           확인
         </DefaultButton>
       </ModalInfo>
@@ -22,11 +32,17 @@ const GuestModal = () => {
 };
 
 export default GuestModal;
-const UserKeyword = styled.div`
+const UserKeyWords = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+`;
+const UserKeyWord = styled.div`
   background-color: #d9d9d9;
-  padding: 10px;
+  padding: 12px;
   border-radius: 20px;
   border-width: 1px;
+  margin-left: 5px;
+  margin-right: 5px;
 `;
 const ModalContainer = styled.div`
   position: absolute;
@@ -49,12 +65,13 @@ const ModalInfo = styled.div`
   justify-content: center;
 `;
 const Name = styled.div`
-  font-size: 25px;
+  font-size: 28px;
   margin: 10px;
   font-weight: 600;
 `;
 const Mbti = styled.div`
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 15px;
 `;

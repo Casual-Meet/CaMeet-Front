@@ -12,7 +12,6 @@ const MapContainer = styled.div`
 const { kakao } = window;
 
 const Kakaomap = ({ lat, lon }) => {
-  console.log(lat, lon);
   useEffect(() => {
     // 마커를 클릭하면 장소명을 표출할 인포윈도우
     const infoWindow = new kakao.maps.InfoWindow({ zIndex: 1 });

@@ -1,31 +1,35 @@
+// 리액트 훅
 import React, { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
+// api
 import getRoomDetail from "../api/getRoomDetail";
 import postRoomDetail from "../api/postRoomDetail";
-import { isModal } from "../atoms/modal";
-import { session } from "../atoms/session";
+// 컴포넌트
 import Nav from "../components/common/Nav";
 import Terms from "../components/common/Terms";
 import GuestModal from "../components/roomdetail/GuestModal";
 import Guests from "../components/roomdetail/Guests";
 import JoinModal from "../components/roomdetail/JoinModal";
 import Kakaomap from "../components/roomdetail/Kakaomap";
+// function
 import { getDays } from "../functions/getDays";
 import getMonthandDate from "../functions/getMonthandDate";
+// atom
+import { session } from "../atoms/session";
+// util
 import { COLOR } from "../utils/colors";
 import { DefaultButton, Title } from "../utils/styles";
-import { modal } from "../atoms/modal";
 const RoomDetail = () => {
-  const [Join, setJoin] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
-  const { data } = useQuery(["detail", id], () => getRoomDetail(id));
-  const day = data && getDays(data.room_date);
-  const { access_token } = useRecoilValue(session);
-  const isclicked = useRecoilValue(modal);
+  const { data } = useQuery(["detail", id], () => getRoomDetail(id)); // 방id얻기 및 리액트 쿼리를 통한 데이터 패칭
+  const [Join, setJoin] = useState(false); // 방 참가 여부 modal을 위한 state
+  const day = data && getDays(data.room_date); //방 정보를 통해 날짜 정보 계산
+  const { access_token } = useRecoilValue(session); //소셜 로그인 되어있어야 방 참가 되도록
+  const [isGuestClick, setGuestClick] = useState(false); //게스트 모달 띄우기
   const { mutate } = useMutation(
     () => postRoomDetail(access_token, parseInt(id)),
     {
@@ -37,28 +41,32 @@ const RoomDetail = () => {
       },
     }
   );
-  console.log(data);
   const joinRoom = () => {
     if (access_token) {
       mutate();
     } else {
+      console.log(access_token);
       navigate("/login");
     }
   };
-  console.log(isclicked);
+  console.log(data);
   // access_token없으면 login 페이지로 redirect
   return (
     <>
       {Join ? <JoinModal setJoin={setJoin}></JoinModal> : null}
       {/* setState를 props로 넘겨줬음 */}
+      {isGuestClick ? (
+        <GuestModal setGuestClick={setGuestClick}></GuestModal>
+      ) : null}
       <Nav />
-      {isclicked ? <GuestModal></GuestModal> : null}
       <RoomData>
+        {/* 시간정보 */}
         <Time>
           <DateCont>{data && getMonthandDate(data.room_date)}</DateCont>
           <DateCont>{day}요일</DateCont>
           <DateCont>{data?.room_time.substr(0, 5)}</DateCont>
         </Time>
+        {/* 방 이름, 호스트 이름 */}
         <RoomInfo>
           <div>
             <div>{data?.room_title}</div>
@@ -67,25 +75,32 @@ const RoomDetail = () => {
           </div>
           <img src={require(`../images/profile_tmp.png`)} alt="" />
         </RoomInfo>
-        <SectionFooter>
+        {/*  인원, 흥미 */}
+        <RoomInfoFooter>
           <Interest>#{data?.room_interest}</Interest>
           <HeadCount>최대 인원 {data?.room_headcount}</HeadCount>
-        </SectionFooter>
+        </RoomInfoFooter>
       </RoomData>
+
       <hr></hr>
+      {/* 지도 */}
       <Title>만남 장소</Title>
       <Kakaomap
         lat={parseFloat(data?.room_latitude)}
         lon={parseFloat(data?.room_longitude)}
       ></Kakaomap>
+
       <hr></hr>
+      {/* 지원자정보 */}
       <People>
         <Title>지원자</Title>
         <GuestContainer>
-          {data?.guest.map((person) => (
-            <>
-              <Guests person={person}></Guests>
-            </>
+          {data?.guest.map((person, index) => (
+            <Guests
+              person={person}
+              key={index}
+              setGuestClick={setGuestClick}
+            ></Guests>
           ))}
         </GuestContainer>
       </People>
@@ -174,7 +189,7 @@ const Time = styled.div`
 const DateCont = styled.div`
   margin-right: 10px;
 `;
-const SectionFooter = styled.div`
+const RoomInfoFooter = styled.div`
   display: flex;
   align-items: center;
   margin-top: 10px;
