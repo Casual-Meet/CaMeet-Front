@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { useQuery } from "react-query";
 import getUserInfo from "../api/getUserInfo";
+import { session } from "../atoms/session";
 
 const InfoWrapper = styled.div`
   margin: 2vw 2vw;
@@ -29,7 +30,7 @@ const Info = () => {
   console.log(makeRoom);
   return (
     <>
-      <Title>내 정보d</Title>
+      <Title>내 정보</Title>
     </>
   );
 };
