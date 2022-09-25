@@ -1,33 +1,30 @@
+// 리액트 훅
 import React, { useEffect, useState } from "react";
-import Nav from "../components/common/Nav";
 import styled from "styled-components";
-import infoSlide from "../images/info-slide.png";
-import { COLOR } from "../utils/colors";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+// 컴포넌트
+import Nav from "../components/common/Nav";
+import RoomByDate from "../components/home/RoomByDate";
+import infoSlide from "../images/info-slide.png";
+// api
 import getHomeData from "../api/getHomeData";
+// 함수
 import getDates from "../functions/getDates";
 import { getDays } from "../functions/getDays";
-import RoomByDate from "../components/home/RoomByDate";
 import isToday from "../functions/isToday";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import QueryString from "qs";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { session } from "../atoms/session";
+// 유틸
+import { COLOR } from "../utils/colors";
 
 function Home() {
-  const { data, isLoading } = useQuery(["homedata"], getHomeData);
-  const [dates, setDates] = useState([]);
-  // recoil 사용 고민
-  const [selectedDate, setSelectedDate] = useState("");
-  const user = useRecoilValue(session);
-  console.log(user);
+  const { data, isLoading } = useQuery(["homedata"], getHomeData); //방 정보 받아오기
+  const [dates, setDates] = useState([]); //날짜정보 받아오기
+  const [selectedDate, setSelectedDate] = useState(""); //선택된 날짜 초록색으로 만들기
   useEffect(() => {
     const dates = getDates();
     dates.forEach((day) => (isToday(day) ? setSelectedDate(day) : null));
     setDates(dates);
-  }, []);
-  // 2주일치 날짜 데이터 받아오기
+  }, []); // 2주일치 날짜 데이터 받아오기
 
   return (
     <>
@@ -66,7 +63,7 @@ function Home() {
         </SelectDate>
         {/* data없으면 오류나므로 &&처리 */}
         {isLoading
-          ? "Loading"
+          ? "Loading" //로딩 체크
           : selectedDate &&
             data &&
             data[selectedDate]?.map((room) => (
@@ -77,10 +74,12 @@ function Home() {
                 <hr></hr>
               </>
             ))}
+        {/* 선택된 날짜의 방만 띄워줌 */}
       </Container>
       <Link to={"/roomcreate"}>
         <RoomCreateButton>+</RoomCreateButton>
       </Link>
+      {/* roomcreate연결 */}
     </>
   );
 }

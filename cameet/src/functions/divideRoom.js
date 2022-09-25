@@ -1,8 +1,8 @@
 /**
  * 
- * @param {*} obj -> data object 날짜가 모두 같이 되어있음
+ * @param {*} obj -> 모든 날짜의 방 정보가 한번에 뭉쳐져있음
 }
- * @returns result => 날짜별 배열로 나누어서 return  
+ * @returns result => 날짜별 방정보(배열)
  */
 
 export default function divideRoom(obj) {
