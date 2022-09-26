@@ -123,8 +123,6 @@ const FirstInfo = () => {
       )
       .then((res) => {
         setSessionData(res.data);
-        window.localStorage.setItem("access_token", res.data.access_token);
-        window.localStorage.setItem("refresh_token", res.data.refresh_token);
         console.log(res);
         alert("추가완료!");
         navigate("/");
