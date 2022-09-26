@@ -15,9 +15,8 @@ import { COLOR } from "../utils/colors";
 const MyPage = () => {
   const user = useRecoilValue(session);
   const token = user.access_token;
-  const { data: userInfo } = useQuery([
-    "getUserInfo"],
-    () => getUserInfo(token),
+  const { data: userInfo } = useQuery(["getUserInfo"], () =>
+    getUserInfo(token)
   );
   let navigate = useNavigate();
   const onSubmit = () => {

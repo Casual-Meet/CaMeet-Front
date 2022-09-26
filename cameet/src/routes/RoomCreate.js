@@ -30,6 +30,7 @@ const RoomCreate = () => {
       <Nav />
       <Layout>
         <Title>모임을 시작해보세요</Title>
+
         <SubTitle>방 제목</SubTitle>
         <form onSubmit={handleSubmit(onSubmit, onError)}>
           <div>
