@@ -7,6 +7,8 @@ import InputForm from "../components/roomcreate/InputForm";
 import { useMutation } from "react-query";
 import postRoomData from "../api/postRoomData";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
+import Headcount from "../components/roomcreate/Headcount";
 
 const RoomCreate = () => {
   const { mutate, isLoading, isError, error, isSuccess } =
@@ -69,6 +71,11 @@ const RoomCreate = () => {
           <SubTitle>만남 장소</SubTitle>
           <InputForm />
           <SubTitle>모임 정원</SubTitle>
+          
+            {[1, 2, 3, 4, 5].map((number) => (
+              <Headcount number={number} key={number} register={register} />
+            ))}
+          
           <Terms />
           <DefaultButton type="submit">생성하기</DefaultButton>
         </form>
@@ -78,3 +85,7 @@ const RoomCreate = () => {
 };
 
 export default RoomCreate;
+
+const Wrapper = styled.div`
+  margin : 15px auto;
+`;

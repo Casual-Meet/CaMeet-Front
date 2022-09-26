@@ -3,6 +3,7 @@ import { BASE_URL } from "./BaseURL";
 
 export default function postRoomData(
   access_token,
+  date,
   title,
   interest,
   time,
@@ -20,6 +21,7 @@ export default function postRoomData(
         },
       },
       {
+        room_date : date,
         room_title: title,
         room_interest: interest,
         room_time: time,
