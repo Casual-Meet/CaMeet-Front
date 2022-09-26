@@ -15,7 +15,10 @@ import { COLOR } from "../utils/colors";
 const MyPage = () => {
   const user = useRecoilValue(session);
   const token = user.access_token;
-  const { data: userInfo } = useQuery(["getUserInfo", (token) => getUserInfo]);
+  const { data: userInfo } = useQuery([
+    "getUserInfo"],
+    () => getUserInfo(token),
+  );
   let navigate = useNavigate();
   const onSubmit = () => {
     axios
@@ -96,35 +99,35 @@ const MyPage = () => {
           <InputDom>
             <Input
               type="text"
-              defaultValue={userInfo.user_name}
+              defaultValue={userInfo?.user_name}
               ref={nameRef}
             />
             <Input
               type="text"
-              defaultValue={userInfo.user_nickname}
+              defaultValue={userInfo?.user_nickname}
               ref={nicknameRef}
             />
             <Input
               type="text"
-              defaultValue={userInfo.user_keyword1}
+              defaultValue={userInfo?.user_keyword1}
               ref={exciteOneRef}
             />
             <Input
               type="text"
-              defaultValue={userInfo.user_keyword2}
+              defaultValue={userInfo?.user_keyword2}
               ref={exciteTwoRef}
             />
 
             <MbtiInput
               type="text"
-              defaultValue={userInfo.user_mbti}
+              defaultValue={userInfo?.user_mbti}
               ref={mbtiRef}
             />
 
             <EmailDom>
               <EmailInput
                 type="text"
-                defaultValue={userInfo.user_auth_email}
+                defaultValue={userInfo?.user_auth_email}
                 ref={emailRef}
               />
               <EmailButton onClick={() => alert("준비 중인 기능입니다")}>

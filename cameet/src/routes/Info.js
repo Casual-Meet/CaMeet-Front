@@ -7,7 +7,7 @@ import { useRecoilValue } from "recoil";
 import { useQuery } from "react-query";
 import getUserInfo from "../api/getUserInfo";
 import { session } from "../atoms/session";
-
+import { BASE_URL } from "../api/BaseURL";
 const InfoWrapper = styled.div`
   margin: 2vw 2vw;
 `;
@@ -17,19 +17,28 @@ const Loader = styled.div``;
 const Info = () => {
   const user = useRecoilValue(session);
   const token = user.access_token;
-  const { isLoading, error, data, isFetching } = useQuery("userinfo", () => {
+  const {
+    isLoaing: loading,
+    error: Error,
+    data: Data,
+  } = useQuery("userinfo", () =>
     axios
-      .get("https://cameet.site/userinfo/", {
+      .get(`${BASE_URL}/userinfo/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
         "Content-Type": "application/json",
       })
-      .then((res) => {
-        console.log(res.data);
-        console.log("돼써");
-      });
-  });
+      .then((res) => res.data)
+  );
+
+  const { isLoading, error, data } = useQuery(
+    "mypage",
+    () =>
+      // 함수로 빼놓으면 편해요!
+      getUserInfo(token)
+  );
+  console.log(data)
 
   if (isLoading) return "Loading...";
 
@@ -40,19 +49,19 @@ const Info = () => {
     <>
       <InfoWrapper>
         <Title>내 정보</Title>
-        <div>{data?.user_nickname}님</div>
+        {/* <div>{data?.user_nickname}님</div>
         <div>
           <span>{data?.user_keyword1}</span>
           <span>{data?.user_keyword2}</span>
-        </div>
+        </div> */}
         <div>
           <SubTitle>내가 만든 방</SubTitle>
-          <div>{data?.user_create_rooms.room_title}</div>
-          <div>{data?.user_create_rooms.room_interest}</div>
+          {/* <div>{data?.user_create_rooms.room_title}</div>
+          <div>{data?.user_create_rooms.room_interest}</div> */}
         </div>
         <div>
           <SubTitle>내가 참여하는 방</SubTitle>
-          <div>{data?.user_join_rooms.room_title.room_interest}</div>
+          {/* <div>{data?.user_join_rooms.room_title.room_interest}</div> */}
         </div>
       </InfoWrapper>
     </>
