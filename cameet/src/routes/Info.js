@@ -49,19 +49,19 @@ const Info = () => {
     <>
       <InfoWrapper>
         <Title>내 정보</Title>
-        {/* <div>{data?.user_nickname}님</div>
+        <div>{data?.user_nickname}님</div>
         <div>
           <span>{data?.user_keyword1}</span>
           <span>{data?.user_keyword2}</span>
-        </div> */}
+        </div> 
         <div>
           <SubTitle>내가 만든 방</SubTitle>
-          {/* <div>{data?.user_create_rooms.room_title}</div>
-          <div>{data?.user_create_rooms.room_interest}</div> */}
+          <div>{data?.user_create_rooms?.room_title}</div>
+          <div>{data?.user_create_rooms?.room_interest}</div>
         </div>
         <div>
           <SubTitle>내가 참여하는 방</SubTitle>
-          {/* <div>{data?.user_join_rooms.room_title.room_interest}</div> */}
+          <div>{data?.user_join_rooms?.room_title.room_interest}</div>
         </div>
       </InfoWrapper>
     </>
