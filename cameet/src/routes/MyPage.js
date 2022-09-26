@@ -8,15 +8,15 @@ import { useNavigate } from "react-router";
 import { session } from "../atoms/session";
 import logoPlus from "../images/imgplus.png";
 import Nav from "../components/common/Nav";
-import getUserInfo from "../api/getUserInfo";
+import getMypageInfo from "../api/getMypageInfo";
 import { Title, DefaultButton, Layout } from "../utils/styles";
 import { COLOR } from "../utils/colors";
 
 const MyPage = () => {
   const user = useRecoilValue(session);
   const token = user.access_token;
-  const { data: userInfo } = useQuery(["getUserInfo"], () =>
-    getUserInfo(token)
+  const { data: userInfo } = useQuery(["getMypageInfo"], () =>
+    getMypageInfo(token)
   );
   let navigate = useNavigate();
   const onSubmit = () => {

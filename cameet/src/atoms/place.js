@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 export const place = atom({
-  key: "place",
+  key: "placeatom",
   default: {
     place_name: "",
     latitude: "",

@@ -1,11 +1,11 @@
 import axios from "axios";
 import { BASE_URL } from "./BaseURL";
 
-export default function getUserInfo(token) {
+export default function getMypageInfo(access_token) {
   return axios
-    .get(`${BASE_URL}/userinfo/`, {
+    .get(`${BASE_URL}/accounts/mypage/`, {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${access_token}`,
       },
       "Content-Type": "application/json",
     })

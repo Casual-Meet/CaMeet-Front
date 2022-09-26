@@ -11,90 +11,14 @@ import data from "../db/mbti.json";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { session } from "../atoms/session";
 
-const InfoDom = styled.div`
-  font-size: 15pt;
-  font-weight: bold;
-`;
-//필수입력사항표기를 위한 빨강*부분
-const Red = styled.p`
-  color: ${COLOR.red};
-`;
-const Dom = styled.div`
-  display: flex;
-`;
-const AInput = styled(Input)`
-  width: 100%;
-  margin: 7px 0px;
-`;
-//텍스트+input부붙
-const BoxStyle = styled.div`
-  width: 90%;
-  margin: 20px 0px;
-`;
-//메일부분 스타일링
-const MailInput = styled(Input)`
-  width: 100%;
-  margin: 7px 7px 0px 0px;
-`;
-
-// const MailButton = styled.button`
-//   width: 20%;
-//   padding: 6px;
-//   background-color: ${COLOR.mainColor};
-//   border-radius: 40px;
-//   border: 1px solid ${COLOR.mainColor};
-//   color: #ffffff;
-// `;
-const MailDom = styled.div`
-  white-space: nowrap;
-`;
-const MbtiDom = styled.div`
-  display: flex;
-  overflow: scroll;
-`;
-const StyledLabel = styled.label`
-  margin-right: 1vw;
-`;
-const StyledInput = styled.input`
-  appearance: none;
-  width: 60px;
-  height: 35px;
-
-  border: 1px solid transparent;
-  background-color: ${(props) => props.btnColor || "white"};
-  // background-image: ${(props) => props.btnImg || "#"};
-  border-radius: 20px;
-  cursor: pointer;
-  //   position: absolute;
-  z-index: 1;
-  &:checked {
-    border: 2px solid ${COLOR.mainColor};
-  }
-`;
-const Span = styled.span`
-  position: relative;
-  z-index: 2;
-  font-size: 12pt;
-  font-weight: 400;
-  cursor: pointer;
-`;
-const SpanDom = styled.div`
-  text-align: center;
-  width: 65px;
-  margin: -32px 0px 0px 3px;
-`;
-const InputDom = styled.div``;
-
 const FirstInfo = () => {
   const user = useRecoilValue(session);
   const token = user.access_token;
   const [mbtis, setMbtis] = useState("");
   const [sessionData, setSessionData] = useRecoilState(session);
-
   // console.log(user.access_token);
   // console.log(user.refresh_token);
   let navigate = useNavigate();
-
   const onSubmit = () => {
     console.log(nicknameRef.current.value);
     console.log(nameRef.current.value);
@@ -102,7 +26,6 @@ const FirstInfo = () => {
     console.log(exciteOneRef.current.value);
     console.log(exciteTwoRef.current.value);
     console.log(emailRef.current.value);
-
     axios
       .patch(
         "https://cameet.site/accounts/mypage/",
@@ -128,14 +51,12 @@ const FirstInfo = () => {
         navigate("/");
       });
   };
-
   const nicknameRef = useRef(null);
   const nameRef = useRef(null);
   const exciteOneRef = useRef(null);
   const exciteTwoRef = useRef(null);
   const emailRef = useRef(null);
   console.log(sessionData);
-
   const mbtiClick = (id, mbti) => {
     console.log("start");
     console.log(id);
@@ -145,7 +66,6 @@ const FirstInfo = () => {
   // if(document.getElementById('gender_Male').checked) {
   //   //Male radio button is checked
   // }
-
   return (
     <>
       <Nav />
@@ -226,3 +146,77 @@ const FirstInfo = () => {
 };
 
 export default FirstInfo;
+
+const InfoDom = styled.div`
+  font-size: 15pt;
+  font-weight: bold;
+`;
+//필수입력사항표기를 위한 빨강*부분
+const Red = styled.p`
+  color: ${COLOR.red};
+`;
+const Dom = styled.div`
+  display: flex;
+`;
+const AInput = styled(Input)`
+  width: 100%;
+  margin: 7px 0px;
+`;
+//텍스트+input부붙
+const BoxStyle = styled.div`
+  width: 90%;
+  margin: 20px 0px;
+`;
+//메일부분 스타일링
+const MailInput = styled(Input)`
+  width: 100%;
+  margin: 7px 7px 0px 0px;
+`;
+
+// const MailButton = styled.button`
+//   width: 20%;
+//   padding: 6px;
+//   background-color: ${COLOR.mainColor};
+//   border-radius: 40px;
+//   border: 1px solid ${COLOR.mainColor};
+//   color: #ffffff;
+// `;
+const MailDom = styled.div`
+  white-space: nowrap;
+`;
+const MbtiDom = styled.div`
+  display: flex;
+  overflow: scroll;
+`;
+const StyledLabel = styled.label`
+  margin-right: 1vw;
+`;
+const StyledInput = styled.input`
+  appearance: none;
+  width: 60px;
+  height: 35px;
+
+  border: 1px solid transparent;
+  background-color: ${(props) => props.btnColor || "white"};
+  // background-image: ${(props) => props.btnImg || "#"};
+  border-radius: 20px;
+  cursor: pointer;
+  //   position: absolute;
+  z-index: 1;
+  &:checked {
+    border: 2px solid ${COLOR.mainColor};
+  }
+`;
+const Span = styled.span`
+  position: relative;
+  z-index: 2;
+  font-size: 12pt;
+  font-weight: 400;
+  cursor: pointer;
+`;
+const SpanDom = styled.div`
+  text-align: center;
+  width: 65px;
+  margin: -32px 0px 0px 3px;
+`;
+const InputDom = styled.div``;
