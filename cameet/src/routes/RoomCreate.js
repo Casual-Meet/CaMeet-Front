@@ -13,7 +13,6 @@ import Headcount from "../components/roomcreate/Headcount";
 const RoomCreate = () => {
   const { mutate, isLoading, isError, error, isSuccess } =
     useMutation(postRoomData);
-
   // useMutation의 리턴값을 출력
   console.log(
     `isLoaing : ${isLoading}, isError : ${isError}, error : ${error}, isSuccess : ${isSuccess}`
@@ -71,11 +70,11 @@ const RoomCreate = () => {
           <SubTitle>만남 장소</SubTitle>
           <InputForm />
           <SubTitle>모임 정원</SubTitle>
-          
-            {[1, 2, 3, 4, 5].map((number) => (
-              <Headcount number={number} key={number} register={register} />
-            ))}
-          
+
+          {[1, 2, 3, 4, 5].map((number) => (
+            <Headcount number={number} key={number} register={register} />
+          ))}
+
           <Terms />
           <DefaultButton type="submit">생성하기</DefaultButton>
         </form>
@@ -87,5 +86,5 @@ const RoomCreate = () => {
 export default RoomCreate;
 
 const Wrapper = styled.div`
-  margin : 15px auto;
+  margin: 15px auto;
 `;
