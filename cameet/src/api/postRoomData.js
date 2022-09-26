@@ -1,36 +1,25 @@
 import axios from "axios";
 import { BASE_URL } from "./BaseURL";
 
-export default function postRoomData(
-  access_token,
-  date,
-  title,
-  interest,
-  time,
-  place,
-  latitude,
-  longitude,
-  headcount
-) {
-  return axios
-    .post(
-      `${BASE_URL}/roomcreate`,
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
+export default function postRoomData(props) {
+  console.log(props);
+  return axios.post(
+    `${BASE_URL}/roomcreate`,
+    {
+      room_title: props.title,
+      room_interest: props.interest,
+      room_time: props.time,
+      room_place: props.place,
+      room_headcount: props.headcount,
+      room_thunder: 1,
+      // room_date: props.date,
+      // room_latitude: props.latitude,
+      // room_longitude: props.longitude,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${props.access_token}`,
       },
-      {
-        room_date : date,
-        room_title: title,
-        room_interest: interest,
-        room_time: time,
-        room_place: place,
-        room_latitude: latitude,
-        room_longitude: longitude,
-        room_headcount: headcount,
-      }
-    )
-    .then((res) => res.data)
-    .catch((error) => console.log(error));
+    }
+  );
 }

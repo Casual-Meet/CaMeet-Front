@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
+import { place } from "../../atoms/place";
 
 const MapContainer = styled.div`
   margin: 2vw 0;
@@ -10,8 +11,7 @@ const MapContainer = styled.div`
 
 const { kakao } = window;
 const KakaoLocation = ({ searchPlace }) => {
-  const setLocationData = useSetRecoilState();
-  console.log(searchPlace);
+  const setLocationData = useSetRecoilState(place);
   useEffect(() => {
     // 마커를 클릭하면 장소명을 표출할 인포윈도우
     const infoWindow = new kakao.maps.InfoWindow({ zIndex: 1 });
@@ -31,15 +31,15 @@ const KakaoLocation = ({ searchPlace }) => {
 
         const locPosition = new kakao.maps.LatLng(lat, lon), //마커가 표시될 위치
           message = '<div style="padding:15px;">현 위치</div>';
-
-        displayMyMarker(locPosition, message);
+        if (!searchPlace) {
+          displayMyMarker(locPosition, message);
+        }
       });
     } else {
       // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 
       var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
         message = "현 위치를 불러올 수 없어요.";
-
       displayMyMarker(locPosition, message); // 함수 이름을 변경함
     }
     //마커 생성----------

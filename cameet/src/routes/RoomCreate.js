@@ -2,26 +2,45 @@ import React, { useState, useCallback } from "react";
 import Nav from "../components/common/Nav";
 import { Title, SubTitle, DefaultButton, Layout, Input } from "../utils/styles";
 import Terms from "../components/common/Terms";
-import axios from "axios";
 import InputForm from "../components/roomcreate/InputForm";
 import { useMutation } from "react-query";
 import postRoomData from "../api/postRoomData";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import Headcount from "../components/roomcreate/Headcount";
+import { useRecoilValue } from "recoil";
+import { place } from "../atoms/place";
+import { session } from "../atoms/session";
 
 const RoomCreate = () => {
-  const { mutate, isLoading, isError, error, isSuccess } =
-    useMutation(postRoomData);
-  // useMutation의 리턴값을 출력
-  console.log(
-    `isLoaing : ${isLoading}, isError : ${isError}, error : ${error}, isSuccess : ${isSuccess}`
-  );
-
+  const locationData = useRecoilValue(place);
+  const { access_token } = useRecoilValue(session);
+  const { place_name, longitude, latitude } = locationData;
+  const { mutate } = useMutation((createProps) => postRoomData(createProps), {
+    onSuccess: (data) => {
+      if (data.status === 200) {
+        console.log(data);
+      }
+    },
+  });
   const { register, watch, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    watch();
-    console.log(data);
+  const onSubmit = () => {
+    if (!place_name || !longitude || !latitude) {
+      alert("장소를 선택(클릭)해주세요!");
+      return;
+    }
+    const createProps = {
+      title: watch().title,
+      headcount: watch().headcount,
+      interest: watch().roominterest,
+      time: watch().roomtime,
+      date: watch().roomdate,
+      place: place_name,
+      latitude: latitude,
+      longitude: longitude,
+      access_token: access_token,
+    };
+    mutate(createProps);
   };
   const onError = (error) => {
     console.log(error);
@@ -31,18 +50,14 @@ const RoomCreate = () => {
       <Nav />
       <Layout>
         <Title>모임을 시작해보세요</Title>
-
         <SubTitle>방 제목</SubTitle>
         <form onSubmit={handleSubmit(onSubmit, onError)}>
-          <div>
             <Input
               {...register("title", { required: true })}
               autoFocus
               placeholder="방 제목을 입력해주세요"
             />
-          </div>
           <SubTitle>관심사</SubTitle>
-          <div>
             <Input
               type="text"
               name="roominterest"
@@ -51,7 +66,6 @@ const RoomCreate = () => {
                 required: true,
               })}
             />
-          </div>
           <SubTitle>모임 날짜/시간</SubTitle>
           <Input
             type="date"
