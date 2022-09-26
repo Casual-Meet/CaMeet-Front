@@ -27,7 +27,6 @@ const Info = () => {
       setLoading(false);
     })();
   }, []);
-  console.log(makeRoom);
   return (
     <>
       <InfoWrapper>

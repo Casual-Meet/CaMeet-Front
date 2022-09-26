@@ -1,7 +1,11 @@
+/**
+ *
+ * @param {*} day yyyy-mm-dd형태
+ * @returns 요일 정보(월,화,수...등등)
+ */
 export function getDays(day) {
   const args = day.split("-");
   const newday = new Date(args[0], args[1], args[2]);
-
   switch (newday.getDay()) {
     case 1:
       return "월";

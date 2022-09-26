@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {*} day yyyy-mm-dd
+ * @returns 해당 날자가 오늘인지 아닌지 판별(ture, false)
+ */
 export default function isToday(day) {
   const args = day.split("-");
   const today = new Date();
