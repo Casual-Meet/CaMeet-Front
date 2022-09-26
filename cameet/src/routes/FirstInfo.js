@@ -211,7 +211,7 @@ const FirstInfo = () => {
             />
           </BoxStyle>
           <BoxStyle>
-            <Dom>메일인증</Dom>
+            <Dom>학교이메일 인증</Dom>
             <MailDom>
               <MailInput
                 placeholder="학교 이메일을 입력해주세요"
