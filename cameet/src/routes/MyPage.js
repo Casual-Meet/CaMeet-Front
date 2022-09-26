@@ -1,154 +1,21 @@
 import React, { useRef, useState } from "react";
-import { Title, DefaultButton, Layout } from "../utils/styles";
-import Nav from "../components/common/Nav";
-import { COLOR } from "../utils/colors";
-import styled from "styled-components";
+import { useQuery } from "react-query";
+import { useRecoilValue } from "recoil";
 import axios from "axios";
-import { useEffect } from "react";
-import { useRecoilValue, useRecoilState } from "recoil";
-import { session } from "../atoms/session";
+import styled from "styled-components";
 import { useNavigate } from "react-router";
+
+import { session } from "../atoms/session";
 import logoPlus from "../images/imgplus.png";
+import Nav from "../components/common/Nav";
+import getUserInfo from "../api/getUserInfo";
+import { Title, DefaultButton, Layout } from "../utils/styles";
+import { COLOR } from "../utils/colors";
 
-const SubContainer = styled.div`
-  display: flex;
-  justify-content: left;
-  align-items: flex-start;
-  text-align: left;
-`;
-const SmallTitle = styled.p`
-  font-size: 1rem;
-  margin: 15.8px 0px;
-`;
-
-const Input = styled.input`
-  margin: 12.5px 0px;
-  font-size: 1rem;
-  color: ${COLOR.grey};
-
-  border: 1px solid transparent;
-  :focus {
-    outline: none;
-  }
-`;
-const TextDom = styled.div`
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-`;
-const InputDom = styled.div`
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-`;
-const EmailDom = styled.div`
-  display: flex;
-`;
-const EmailInput = styled.input`
-  width: 70%;
-  margin: 12.5px 0px;
-  font-size: 1rem;
-  color: #4c4c4c;
-  border: 1px solid transparent;
-  :focus {
-    outline: none;
-  }
-`;
-const EmailButton = styled.button`
-  width: 30%;
-  font-size: 1rem;
-  background-color: #07ca4a;
-  border-radius: 15px;
-  border: 1px solid transparent;
-  color: white;
-  height: 1.5rem;
-  margin: 15px 0px;
-  cursor: pointer;
-`;
-const MbtiInput = styled.input`
-  width: 16%;
-  margin: 10px 0px 2px 0px;
-  padding-left: 10px;
-  font-size: 1rem;
-  color: #4c4c4c;
-  background-color: #f7e5dc;
-  border-radius: 20px;
-  height: 1.8rem;
-  border: 1px solid transparent;
-  :focus {
-    outline: none;
-  }
-`;
-const BackgroundDom = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-const Background = styled.div`
-  width: 100px;
-  height: 100px;
-
-  margin-top: 2vh;
-  background-color: #d9d9d9;
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
-  cursor: pointer;
-  position: absolute;
-  z-index: 1;
-  border-radius: 100px;
-`;
-
-const ShowImg = styled.img`
-  width: 100px;
-  height: 100px;
-  border-radius: 100px;
-  position: absolute;
-  z-index: 2;
-  overflow: hidden;
-`;
-const Img = styled.label`
-  width: 100%;
-  height: 100px;
-  margin-top: 2vh;
-  display: flex;
-  justify-content: center;
-  vertical-align: middle;
-  cursor: pointer;
-`;
-const PhotoInput = styled.input`
-  visibility: hidden;
-  width: 100%;
-`;
-const ImgIcon = styled.img`
-  width: 30px;
-  height: 30px;
-  position: relative;
-  top: 75px;
-  z-index: 3;
-  left: 30px;
-`;
 const MyPage = () => {
   const user = useRecoilValue(session);
   const token = user.access_token;
-  const [sessionData, setSessionData] = useRecoilState(session);
-  const [userInfo, setUserInfo] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://cameet.site/accounts/mypage/", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        "Content-Type": "application/json",
-      })
-      .then((res) => {
-        console.log(res.data);
-        setUserInfo(res.data);
-        console.log("success");
-      });
-  }, []);
+  const { data: userInfo } = useQuery(["getUserInfo", (token) => getUserInfo]);
   let navigate = useNavigate();
   const onSubmit = () => {
     axios
@@ -273,3 +140,123 @@ const MyPage = () => {
 };
 
 export default MyPage;
+
+const SubContainer = styled.div`
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  text-align: left;
+`;
+const SmallTitle = styled.p`
+  font-size: 1rem;
+  margin: 15.8px 0px;
+`;
+
+const Input = styled.input`
+  margin: 12.5px 0px;
+  font-size: 1rem;
+  color: ${COLOR.grey};
+
+  border: 1px solid transparent;
+  :focus {
+    outline: none;
+  }
+`;
+const TextDom = styled.div`
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+`;
+const InputDom = styled.div`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+`;
+const EmailDom = styled.div`
+  display: flex;
+`;
+const EmailInput = styled.input`
+  width: 70%;
+  margin: 12.5px 0px;
+  font-size: 1rem;
+  color: #4c4c4c;
+  border: 1px solid transparent;
+  :focus {
+    outline: none;
+  }
+`;
+const EmailButton = styled.button`
+  width: 30%;
+  font-size: 1rem;
+  background-color: #07ca4a;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  color: white;
+  height: 1.5rem;
+  margin: 15px 0px;
+  cursor: pointer;
+`;
+const MbtiInput = styled.input`
+  width: 16%;
+  margin: 10px 0px 2px 0px;
+  padding-left: 10px;
+  font-size: 1rem;
+  color: #4c4c4c;
+  background-color: #f7e5dc;
+  border-radius: 20px;
+  height: 1.8rem;
+  border: 1px solid transparent;
+  :focus {
+    outline: none;
+  }
+`;
+const BackgroundDom = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const Background = styled.div`
+  width: 100px;
+  height: 100px;
+
+  margin-top: 2vh;
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  border-radius: 100px;
+`;
+
+const ShowImg = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  position: absolute;
+  z-index: 2;
+  overflow: hidden;
+`;
+const Img = styled.label`
+  width: 100%;
+  height: 100px;
+  margin-top: 2vh;
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  cursor: pointer;
+`;
+const PhotoInput = styled.input`
+  visibility: hidden;
+  width: 100%;
+`;
+const ImgIcon = styled.img`
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: 75px;
+  z-index: 3;
+  left: 30px;
+`;
