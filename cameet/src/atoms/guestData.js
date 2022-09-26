@@ -1,3 +1,4 @@
+// roomdetail -> guest 눌렀을때를 위한 atom
 import { atom } from "recoil";
 export const guestData = atom({
   key: "guestData",

@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import Profile from "../common/Profile";
 const JoinModal = ({ setJoin }) => {
   return (
     <JoinModalContainer>
       <JoinModalInfo>
-        <img src={require(`../../images/profile_tmp.png`)} alt="img"></img>
+        <Profile />
         <Name>철수</Name>
         <Mbti>ENFJ</Mbti>
         <Message>참여신청이 완료되었습니다.</Message>

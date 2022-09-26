@@ -2,7 +2,7 @@ import React from "react";
 import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { guestData } from "../../atoms/guestData";
-
+import Profile from "../common/Profile";
 const Guests = ({ person, setGuestClick }) => {
   const setGuestData = useSetRecoilState(guestData);
   return (
@@ -19,7 +19,7 @@ const Guests = ({ person, setGuestClick }) => {
         });
       }}
     >
-      <img src={require(`../../images/profile_tmp.png`)} alt=""></img>
+      <Profile></Profile>
       <Nickname>{person.user_nickname}</Nickname>
     </GuestContainer>
   );

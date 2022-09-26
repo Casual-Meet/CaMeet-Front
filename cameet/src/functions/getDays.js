@@ -5,6 +5,7 @@
  */
 export function getDays(day) {
   const args = day.split("-");
+  args[1] = args[1] - 1;
   const newday = new Date(args[0], args[1], args[2]);
   switch (newday.getDay()) {
     case 1:

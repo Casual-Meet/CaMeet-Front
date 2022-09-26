@@ -14,6 +14,8 @@ import GuestModal from "../components/roomdetail/GuestModal";
 import Guests from "../components/roomdetail/Guests";
 import JoinModal from "../components/roomdetail/JoinModal";
 import Kakaomap from "../components/roomdetail/Kakaomap";
+import Profile from "../components/common/Profile";
+
 // function
 import { getDays } from "../functions/getDays";
 import getMonthandDate from "../functions/getMonthandDate";
@@ -73,7 +75,7 @@ const RoomDetail = () => {
             <br></br>
             <div>호스트 : {data?.host.user_nickname}</div>
           </div>
-          <img src={require(`../images/profile_tmp.png`)} alt="" />
+          <Profile />
         </RoomInfo>
         {/*  인원, 흥미 */}
         <RoomInfoFooter>

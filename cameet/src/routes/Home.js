@@ -25,7 +25,6 @@ function Home() {
     dates.forEach((day) => (isToday(day) ? setSelectedDate(day) : null));
     setDates(dates);
   }, []); // 2주일치 날짜 데이터 받아오기
-
   return (
     <>
       <Nav />

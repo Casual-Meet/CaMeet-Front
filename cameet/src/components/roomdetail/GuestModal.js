@@ -9,7 +9,6 @@ const GuestModal = ({ setGuestClick }) => {
   return (
     <ModalContainer>
       <ModalInfo>
-        <img src={require(`../../images/profile_tmp.png`)} alt=""></img>
         <Name>{guest.user_nickname}</Name>
         <Mbti>{guest.user_mbti}</Mbti>
         <UserKeyWords>
