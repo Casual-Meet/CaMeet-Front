@@ -16,15 +16,18 @@ import { Title, SubTitle, DefaultButton, Layout, Input } from "../utils/styles";
 // recoil
 import { place } from "../atoms/place";
 import { session } from "../atoms/session";
+import { useNavigate } from "react-router";
 
 const RoomCreate = () => {
+  const navigate = useNavigate();
   const locationData = useRecoilValue(place);
   const { access_token } = useRecoilValue(session);
   const { place_name, longitude, latitude } = locationData;
   const { mutate } = useMutation((createProps) => postRoomData(createProps), {
     onSuccess: (data) => {
       if (data.status === 200) {
-        console.log(data);
+        alert("방 생성이 완료되었습니다!");
+        navigate("/");
       }
     },
   }); // post
@@ -35,14 +38,14 @@ const RoomCreate = () => {
       return;
     }
     const createProps = {
-      title: watch().title,
-      headcount: watch().headcount,
-      interest: watch().roominterest,
-      time: watch().roomtime,
-      date: watch().roomdate,
-      place: place_name,
-      latitude: latitude,
-      longitude: longitude,
+      title: String(watch().title),
+      headcount: parseInt(watch().headcount),
+      interest: String(watch().roominterest),
+      time: `${watch().roomtime}:00.000000`,
+      date: `${watch().roomdate}`,
+      place: String(place_name),
+      latitude: String(latitude),
+      longitude: String(longitude),
       access_token: access_token,
     };
     mutate(createProps);

@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { DefaultButton } from "../../utils/styles";
 import Profile from "../common/Profile";
+import { useQuery } from "react-query";
+import getMypageInfo from "../../api/getMypageInfo";
 const JoinModal = ({ setJoin }) => {
+  const { data } = useQuery(["userdata"], getMypageInfo);
   return (
     <JoinModalContainer>
       <JoinModalInfo>
         <Profile />
-        <Name>철수</Name>
-        <Mbti>ENFJ</Mbti>
+        <Name>{data?.user_nickname}</Name>
+        <Mbti>{data?.user_mbti}</Mbti>
         <Message>참여신청이 완료되었습니다.</Message>
-        <img
-          src={require(`../../images/check.png`)}
-          alt=""
-          onClick={() => setJoin(false)}
-        ></img>
+        <DefaultButton onClick={() => setJoin(false)}>확인</DefaultButton>
       </JoinModalInfo>
     </JoinModalContainer>
   );
