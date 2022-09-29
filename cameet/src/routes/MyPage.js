@@ -15,7 +15,7 @@ import { COLOR } from "../utils/colors";
 const MyPage = () => {
   const user = useRecoilValue(session);
   const token = user.access_token;
-  const { data: userInfo } = useQuery(["getMypageInfo"], () =>
+  const { data: userInfo } = useQuery(["getMypageInfo", token], () =>
     getMypageInfo(token)
   );
   let navigate = useNavigate();

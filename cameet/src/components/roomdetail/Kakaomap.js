@@ -11,7 +11,7 @@ const MapContainer = styled.div`
 
 const { kakao } = window;
 
-const Kakaomap = ({ lat, lon }) => {
+const Kakaomap = ({ lat, lon, place }) => {
   useEffect(() => {
     // 마커를 클릭하면 장소명을 표출할 인포윈도우
     const infoWindow = new kakao.maps.InfoWindow({ zIndex: 1 });
@@ -24,7 +24,7 @@ const Kakaomap = ({ lat, lon }) => {
     const map = new kakao.maps.Map(container, options);
     //--------내위치
     const locPosition = new kakao.maps.LatLng(lat, lon), //마커가 표시될 위치
-      message = '<div style="padding:15px;">만남 장소</div>';
+      message = `<div style="padding:15px; font-size:12px">${place}</div>`;
     displayMyMarker(locPosition, message);
     //마커 생성----------
     // 지도에 마커와 인포윈도우를 표시하는 함수입니다

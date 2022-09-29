@@ -26,13 +26,16 @@ const LoginPage = () => {
         params: { code: code },
       })
       .then((res) => {
+        let navigationGuide;
+        sessionData
+          ? (navigationGuide = "/")
+          : (navigationGuide = "/firstinfo");
         setSessionData(res.data);
         window.localStorage.setItem("access_token", res.data.access_token);
         window.localStorage.setItem("refresh_token", res.data.refresh_token);
-        navigate("/firstinfo");
+        navigate(navigationGuide);
       });
   }, [code]);
-  console.log(sessionData);
   const GOOGLE_AUTH_URL = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${SOCIAL_AUTH_GOOGLE_CLIENT_ID}&response_type=code&redirect_uri=${OAUTH2_REDIRECT_URI}&scope=${scope}`;
   return (
     <>

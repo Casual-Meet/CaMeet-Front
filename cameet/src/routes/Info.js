@@ -14,8 +14,10 @@ import { session } from "../atoms/session";
 
 const Info = () => {
   const { access_token: token } = useRecoilValue(session);
-  const { data: Data } = useQuery(["userinfo"], () => getUserInfo(token));
-  const { isLoading, error, data } = useQuery("mypage", () =>
+  const { data: Data } = useQuery(["userinfo", token], () =>
+    getUserInfo(token)
+  );
+  const { isLoading, error, data } = useQuery(["mypage", token], () =>
     getMypageInfo(token)
   ); // 함수로 빼놓으면 편해요!
   console.log(Data);

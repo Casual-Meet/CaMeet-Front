@@ -24,6 +24,8 @@ import { session } from "../atoms/session";
 // util
 import { COLOR } from "../utils/colors";
 import { DefaultButton, Title } from "../utils/styles";
+import postAccessToken from "../api/postAccessToken";
+import useRefreshToken from "../hooks/useRefreshToken";
 const RoomDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -39,6 +41,12 @@ const RoomDetail = () => {
         if (data.status === 200) {
           console.log(data);
           setJoin(true);
+        }
+      },
+      onError: (err) => {
+        if (err.status === 401) {
+          const token = postAccessToken();
+          mutate();
         }
       },
     }
@@ -87,9 +95,11 @@ const RoomDetail = () => {
       <hr></hr>
       {/* 지도 */}
       <Title>만남 장소</Title>
+      <div>{data?.room_place}</div>
       <Kakaomap
         lat={parseFloat(data?.room_latitude)}
         lon={parseFloat(data?.room_longitude)}
+        place={data?.room_place}
       ></Kakaomap>
 
       <hr></hr>
