@@ -15,7 +15,6 @@ import { getDays } from "../functions/getDays";
 import isToday from "../functions/isToday";
 // 유틸
 import { COLOR } from "../utils/colors";
-import postAccessToken from "../api/postAccessToken";
 
 function Home() {
   const { data, isLoading } = useQuery(["homedata"], getHomeData); //방 정보 받아오기
@@ -26,7 +25,6 @@ function Home() {
     dates.forEach((day) => (isToday(day) ? setSelectedDate(day) : null));
     setDates(dates);
   }, []); // 2주일치 날짜 데이터 받아오기
-  useEffect(() => postAccessToken, []);
   return (
     <>
       <Nav />

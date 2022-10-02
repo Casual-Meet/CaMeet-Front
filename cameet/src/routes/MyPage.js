@@ -13,8 +13,8 @@ import { Title, DefaultButton, Layout } from "../utils/styles";
 import { COLOR } from "../utils/colors";
 
 const MyPage = () => {
-  const user = useRecoilValue(session);
-  const token = user.access_token;
+  const token = window.localStorage.getItem("access_token");
+  console.log(token);
   const { data: userInfo } = useQuery(["getMypageInfo", token], () =>
     getMypageInfo(token)
   );

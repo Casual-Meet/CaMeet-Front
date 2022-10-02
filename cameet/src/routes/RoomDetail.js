@@ -25,7 +25,6 @@ import { session } from "../atoms/session";
 import { COLOR } from "../utils/colors";
 import { DefaultButton, Title } from "../utils/styles";
 import postAccessToken from "../api/postAccessToken";
-import useRefreshToken from "../hooks/useRefreshToken";
 const RoomDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -45,8 +44,6 @@ const RoomDetail = () => {
       },
       onError: (err) => {
         if (err.status === 401) {
-          const token = postAccessToken();
-          mutate();
         }
       },
     }

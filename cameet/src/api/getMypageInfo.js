@@ -1,7 +1,9 @@
 import axios from "axios";
-import useRefreshToken from "../hooks/useRefreshToken";
 import { BASE_URL } from "./BaseURL";
-export default function getMypageInfo(access_token) {
+import postAccessToken from "./postAccessToken";
+import Refetch from "./Refetch";
+export default function getMypageInfo() {
+  const access_token = window.localStorage.getItem("access_token");
   return axios
     .get(`${BASE_URL}/accounts/mypage/`, {
       headers: {
@@ -10,6 +12,10 @@ export default function getMypageInfo(access_token) {
       "Content-Type": "application/json",
     })
     .then((res) => res.data)
-    .catch((err) => (err.status === 401 ? useRefreshToken : null));
-    // 토큰 만료일 경우 refresh 토큰 사용
+    .catch((err) => {
+      if (err.response.status === 401) {
+        console.log(401);
+        Refetch(() => getMypageInfo);
+      }
+    });
 }
