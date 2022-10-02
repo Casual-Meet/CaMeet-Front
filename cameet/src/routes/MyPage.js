@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 import axios from "axios";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
-
+import hellocameet from "../images/hellocameet.png";
 import { session } from "../atoms/session";
 import logoPlus from "../images/imgplus.png";
 import Nav from "../components/common/Nav";
@@ -69,7 +69,7 @@ const MyPage = () => {
       <Layout>
         <Title>내 프로필</Title>
         <BackgroundDom>
-          <Background id="background" />
+          <Background src={hellocameet} id="background" />
         </BackgroundDom>
         <Img htmlFor="file">
           <ImgIcon src={logoPlus} alt="#" />
@@ -218,12 +218,12 @@ const BackgroundDom = styled.div`
   display: flex;
   justify-content: center;
 `;
-const Background = styled.div`
+const Background = styled.img`
   width: 100px;
   height: 100px;
-
   margin-top: 2vh;
-  background-color: #d9d9d9;
+  // background-color: #d9d9d9;
+  // background-image: url({hellocameet});
   display: flex;
   justify-content: center;
   vertical-align: middle;
@@ -231,6 +231,7 @@ const Background = styled.div`
   position: absolute;
   z-index: 1;
   border-radius: 100px;
+  border: 1px solid #d9d9d9;
 `;
 
 const ShowImg = styled.img`
