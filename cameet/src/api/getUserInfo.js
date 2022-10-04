@@ -10,5 +10,4 @@ export default function getUserInfo(token) {
       "Content-Type": "application/json",
     })
     .then((res) => res.data);
-  // 토큰 만료일 경우 refresh 토큰 사용
 }
