@@ -5,5 +5,5 @@ export default function postAccessToken() {
     .post(`${BASE_URL}/api/token/refresh/`, {
       refresh: localStorage.getItem("refresh_token"),
     })
-    .then((res) => res.data.access);
+    .then((res) => localStorage.setItem("access_token", res.data.access));
 }

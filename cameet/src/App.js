@@ -11,13 +11,12 @@ import FirstInfo from "./routes/FirstInfo";
 import { RecoilRoot } from "recoil";
 import postAccessToken from "./api/postAccessToken";
 import { useQuery } from "react-query";
-import { faTruckMedical } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const navigate = useNavigate();
   useQuery(["refresh_token"], postAccessToken, {
     refetchInterval: 60 * 60 * 1000, //1시간마다 refresh하여 access토큰 재발급
-    refetchIntervalInBackground: faTruckMedical,
+    refetchIntervalInBackground: true,
     onError: () => {
       alert("로그인이 필요합니다");
       navigate("/login");
